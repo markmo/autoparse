@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2921c554-dfd7-4f59-89e0-8c0e6770b404" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,14 +65,7 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.rst">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="662">
-                <caret line="68" column="92" lean-forward="true" selection-start-line="68" selection-start-column="92" selection-end-line="68" selection-end-column="92" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -233,12 +226,12 @@
       <workItem from="1549281740336" duration="16836000" />
       <workItem from="1549445643941" duration="7469000" />
       <workItem from="1549499962988" duration="123000" />
-      <workItem from="1549542665243" duration="1713000" />
+      <workItem from="1549542665243" duration="1779000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26141000" />
+    <option name="totallyTimeSpent" value="26207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="977" extended-state="6" />
@@ -345,7 +338,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+      <provider editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="662">
             <caret line="68" column="92" lean-forward="true" selection-start-line="68" selection-start-column="92" selection-end-line="68" selection-end-column="92" />
@@ -353,6 +346,7 @@
           <second_editor />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
 </project>
