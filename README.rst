@@ -19,11 +19,11 @@ We can leverage the fact that log messages are generated from code and therefore
 exhibit a degree a repetition and standardisation of message format. Many automatic log 
 parsing approaches focus on extracting message types (aka Log Keys) and their parameters.
 
-The log key of a log entry `e` refers to the string constant k from the print statement in 
+The log key of a log entry ``e`` refers to the string constant k from the print statement in
 the source code which printed e during the execution of that code. For example, the log 
-key `k` for log entry `e = "Took 10 seconds to build instance."` is `k = "Took * seconds 
-to build instance."`, which is the string constant from the print statement 
-`printf("Took %f seconds to build instance.", t)`. Note that the parameter(s) are abstracted 
+key ``k`` for log entry ``e = "Took 10 seconds to build instance."`` is ``k = "Took * seconds
+to build instance."``, which is the string constant from the print statement
+``printf("Took %f seconds to build instance.", t)``. Note that the parameter(s) are abstracted
 as asterisk(s) in a log key. We expect the same log key per message type.
 
 This way, we can reduce log files to a smaller set of token structures to train a classifier on.
@@ -37,7 +37,7 @@ We can use the values of certain parameters to lookup external information, such
 an IP address has been blacklisted.
 
 A common algorithm, with good performance, and which can be applied against a stream that 
-may emit new, unseen message type, is Spell - Streaming Parser for Event Logs using an LCS.
+may emit new, unseen message type, is *Spell - Streaming Parser for Event Logs using an LCS.*
 
 **Spell - Streaming Parser for Event Logs using Longest Common Subsequence**
 
@@ -47,9 +47,9 @@ file, which is produced by a log printing statement in the source code of a user
 program running on or inside the system.
 
 The goal is to find message types and separate the message type template from the parameter 
-values. For example, a log printing statement: `printf("Temperature %s exceeds warning threshold\n", tmp);` 
-may produce several log entries such as: `"Temperature (41C) exceeds warning threshold"` 
-where the parameter value is `"41C"`, and the message type is: `"Temperature * exceeds warning threshold."`
+values. For example, a log printing statement: ``printf("Temperature %s exceeds warning threshold\n", tmp);``
+may produce several log entries such as: ``"Temperature (41C) exceeds warning threshold"``
+where the parameter value is ``"41C"``, and the message type is: ``"Temperature * exceeds warning threshold."``
 
 A structured log parser is to parse log and produce all message types from those m statements. 
 The key observation is that, if we view the output by a log printing statement (which is a 
