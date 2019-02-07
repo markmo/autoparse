@@ -18,7 +18,7 @@ We can leverage the fact that log messages are generated from code and therefore
 exhibit a degree a repetition and standardisation of message format. Many automatic log 
 parsing approaches focus on extracting message types (aka Log Keys) and their parameters.
 
-The log key of a log entry e refers to the string constant k from the print statement in 
+The log key of a log entry `e` refers to the string constant k from the print statement in 
 the source code which printed e during the execution of that code. For example, the log 
 key `k` for log entry `e = "Took 10 seconds to build instance."` is `k = "Took * seconds 
 to build instance."`, which is the string constant from the print statement 
