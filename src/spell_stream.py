@@ -1,3 +1,4 @@
+# noinspection SpellCheckingInspection
 """
 BSD 3-Clause License
 
@@ -99,13 +100,12 @@ class LCSObject(object):
         self._pos = self._getpos()
         self._sep = self._getsep()
 
-    def tojson(self):
-        temp = ''
-        for i in self._lcsseq:
-            temp += i + ' '
+    def lcsseq(self):
+        return ' '.join(self._lcsseq)
 
+    def tojson(self):
         return json.dumps({
-            'lcsseq': temp,
+            'lcsseq': ' '.join(self._lcsseq),
             'lineids': self._lineids,
             'position': self._pos
         })
@@ -119,6 +119,8 @@ class LCSObject(object):
 
         j = 0
         ret = []
+        prev_token = None
+        fill_next_token = False
         for i in range(len(self._lcsseq)):
             slot = []
             if self._ispos(i):
@@ -126,18 +128,29 @@ class LCSObject(object):
                     if i != (len(self._lcsseq) - 1) and self._lcsseq[i + 1] == seq[j]:
                         break
                     else:
-                        slot.append(seq[j])
+                        slot.append([j, seq[j], prev_token, None])
+                        fill_next_token = True
+                        prev_token = None
 
                     j += 1
 
                 ret.append(slot)
             elif self._lcsseq[i] != seq[j]:
-                return None
+                return []
             else:
+                prev_token = self._lcsseq[i]
+                if fill_next_token:
+                    if slot:
+                        slot[-1][3] = prev_token
+
+                    if ret:
+                        ret[-1][-1][3] = prev_token
+
+                fill_next_token = False
                 j += 1
 
         if j != len(seq):
-            return None
+            return []
 
         return ret
 
@@ -285,3 +298,46 @@ def load(filename):
             print('%s isn\'t slm object' % filename)
 
         return None
+
+
+def make_log_format_regex(log_format):
+    """ Make regular expression to split log messages """
+    columns = []
+    splitters = re.split(r'(<[^<>]+>)', log_format)
+    regex = ''
+    for i in range(len(splitters)):
+        if i % 2 == 0:
+            splitter = re.sub(' +', r'\s+', splitters[i])
+            regex += splitter
+        else:
+            column = splitters[i].strip('<').strip('>')
+            regex += '(?P<%s>.*?)' % column
+            columns.append(column)
+
+    regex = re.compile('^' + regex + '$')
+    return columns, regex
+
+
+def preprocess(line, regexs):
+    params = []
+    formatted = ''
+    for entity, regex in regexs.items():
+        matches = re.finditer(regex, line)
+        if matches:
+            formatted = re.sub(regex, '<{}>'.format(entity.upper()), line)
+            for match in matches:
+                token_start = len(line[:match.start()].split())
+                params.append([match.start(), match.end(), match.group(0), entity, token_start, token_start + 1])
+
+    return formatted, params
+
+
+def get_span(seq, idx):
+    start = 0
+    for i, t in enumerate(seq):
+        if i == idx:
+            return start, start + len(t)
+
+        start += len(t) + 1
+
+    return None

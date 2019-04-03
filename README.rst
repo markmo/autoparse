@@ -13,7 +13,59 @@ information.
 An automatic approach to parsing log records would open up the range of potentially 
 relevant sources to identify issues within time to act.
 
-**Extracting Message Types**
+Introduction
+------------
+
+Networks are monitored to detect threats and perform analysis once a potential threat is
+identified. There are a number of challenges:
+
+1. Various network components and applications generate logs in various formats that must
+   be parsed for analysis. Outside the standard log formats, there is a constant backlog
+   of work to build parsers for new logs.
+2. In addition, the parsers generally extract structured information, but leave relevant
+   information within text fields.
+3. The extracted entities (and relations) form a natural graph. It would be useful to
+   analysts to create a graph that can be queries and linked to various external sources
+   such as malware databases, blacklisted IP addresses, and so on.
+
+We can use the graph structure to make predictions/perform inference. For example, there
+has been recent work with using a graph as input to an LSTM instead of a plain sequence.
+
+Our initial task is:
+
+1. A mechanism to extract entities into a graph representation. The entity types are defined
+   in a UDM (Unified Data Model).
+2. Data engineering is required to get access to required data and process in a repeatable
+  and automated manner consistent with whatever standards have already been put in the place
+  for the project - or help define suitable standards were none exist.
+
+
+Cybersecurity Basics
+--------------------
+
+Cybersecurity is the set of applying security preventions to provide confidentiality,
+integrity, and availability of data. In this section, we explain the well-known triad of
+confidentiality, integrity, and availability (CIA) of information security.
+
+**Confidentiality** aims to restrict disclosures and to grant access of information to only the
+authorised people. There are various ways of ensuring confidentiality such as encryption,
+access controls, and steganography (the practice of concealing a file, message, image, or
+video within another file, message, image, or video, e.g. making text the same colour as the
+background in word processor documents, e-mails, and forum posts.)
+
+**Integrity** requires protecting data in a consistent, precise, and reliable manner. This has
+to guarantee that data is not altered in the course of a specific period. Hashing, digital
+signatures, certificates, non-repudiation are the tools and algorithms providing integrity.
+
+**Availability** is another security concept that the data and resources should be available
+when people need to access it, particularly during emergencies or disasters. The cybersecurity
+specialists should handle the three common challenges for availability; denial of service (DoS),
+loss of information system capabilities because of natural disasters and equipment failures
+during a normal operation.
+
+
+Extracting Message Types
+------------------------
 
 We can leverage the fact that log messages are generated from code and therefore will 
 exhibit a degree a repetition and standardisation of message format. Many automatic log 
@@ -39,7 +91,9 @@ an IP address has been blacklisted.
 A common algorithm, with good performance, and which can be applied against a stream that 
 may emit new, unseen message type, is *Spell - Streaming Parser for Event Logs using an LCS.*
 
-**Spell - Streaming Parser for Event Logs using Longest Common Subsequence**
+
+Spell - Streaming Parser for Event Logs using Longest Common Subsequence
+------------------------------------------------------------------------
 
 The Longest Common Subsequence (LCS) algorithm finds the longest common subsequence of 
 tokens across log entries. A log message or a log record/entry refers to one line in the log 
@@ -68,3 +122,90 @@ From Spell, we can derive message templates. We train a model to classify which 
 are relevant, then use the template as part of a regex to extract structured information.
 
 See `this paper <https://www.cs.utah.edu/~lifeifei/papers/spell.pdf>`_ for more information.
+
+Spell, given for example Kemp logs, will produce structure output as follows:
+
+Sample input:
+
+::
+
+    logger: User bal Timed out (Session : ad512a526c4e19642)
+    stats: VSstatus: 0 Total, 0 Up 0 Down 0 Disabled
+    stats: RSstatus: 0 Total, 0 Up 0 Down 0 Disabled
+    stats: SubVSstatus: 0 Total, 0 Up 0 Down 0 Disabled
+    login[25288]: pam_unix(login:auth): check pass; user unknown
+    login[25288]: pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=/dev/tty1 ruser= rhost=
+    login[25288]: FAILED LOGIN (1) on '/dev/tty1' FOR 'UNKNOWN', Authentication failure
+
+Structured output:
+
+::
+
+    LineId,Process,Content,EventId,EventTemplate,Parameters
+    20,logger,User bal Timed out (Session : ad512a526c4e19642),b72d970b,User <*> Timed out (Session : <*>,"[""bal"",""ad512a526c4e19642""]"
+    21,stats,"VSstatus: 0 Total, 0 Up 0 Down 0 Disabled",dc8c71e4,"VSstatus: <*> Total, <*> Up <*> Down 0 Disabled","[0,0,0]"
+    22,stats,"RSstatus: 0 Total, 0 Up 0 Down 0 Disabled",a3b39f5c,"RSstatus: <*> Total, <*> Up <*> Down 0 Disabled","[0,0,0]"
+    23,stats,"SubVSstatus: 0 Total, 0 Up 0 Down 0 Disabled",3f401b6e,"SubVSstatus: 0 Total, 0 Up 0 Down 0 Disabled","[0,0,0]"
+    24,login[25288],pam_unix(login:auth): check pass; user unknown,cc6f52d7,pam_unix(login:auth): check pass; user unknown,"[]"
+    25,login[25288],pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=/dev/tty1 ruser= rhost=,88abdb22,pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=<*> ruser= rhost=,"[""/dev/tty1""]"
+    26,login[25288],"FAILED LOGIN (1) on '/dev/tty1' FOR 'UNKNOWN', Authentication failure",83a09411,"FAILED LOGIN (1) on '<*>' FOR 'UNKNOWN', Authentication failure","[1]"
+
+Event templates:
+
+::
+
+    EventId,EventTemplate,Occurrences
+    b72d970b,User <*> Timed out (Session : <*>,11
+    dc8c71e4,"VSstatus: <*> Total, <*> Up <*> Down 0 Disabled",14
+    a3b39f5c,"RSstatus: <*> Total, <*> Up <*> Down 0 Disabled",13
+    3f401b6e,"SubVSstatus: 0 Total, 0 Up 0 Down 0 Disabled",10
+    cc6f52d7,pam_unix(login:auth): check pass; user unknown,2
+    88abdb22,pam_unix(login:auth): authentication failure; logname=LOGIN uid=0 euid=0 tty=<*> ruser= rhost=,2
+    83a09411,"FAILED LOGIN (1) on '<*>' FOR 'UNKNOWN', Authentication failure",2
+
+
+The set of event templates will be much smaller than the set of log records. We can apply
+NER against the set of event templates, construct a knowledge graph of entity, referenced
+to template (event_id) and log record (log_id), and reference lookup information for
+parameter values (e.g. whether an IP address appears in a blacklist site).
+
+Given the performance (and cost) overhead of looking up information with external services,
+the lookups will be delayed. A downstream analytic process will flag clusters of interest and
+perform lookups for only those nodes.
+
+TODO: From initial tests, Spell works pretty well out of the box. However, I'm getting slightly
+better results from a paper published the following year (2017) - Drain.
+
+See Drain: An Online Log Parsing Approach with Fixed Depth Tree, Proceedings of the 24th
+International Conference on Web Services (ICWS), 2017. (http://jmzhu.logpai.com/pub/pjhe_icws2017.pdf)
+
+Knowledge Graph
+---------------
+
+Entities and links are add to a graph data structure for downstream analysis. A graph starts with
+defining an ontology. (Although I would expect definitions and structure to evolve, up-front analysis
+solves a number of early critical design decisions. For example, we expect the graph size to grow
+(given the expected log volume) to require a clustered database environment. Understanding the schema
+and access patterns will establish the appropriate partitioning key and secondary indexes for the
+graph implementation.
+
+Examples of ontologies is shown below.
+
+.. image:: images/cysec_knowledge_graph.jpg
+
+.. image:: images/cysec_ontology.jpg
+
+.. image:: images/cysec_ontology_2.jpg
+
+The example ontology shown above, consists of the following five entity types:
+
+1. Vulnerability. Each of the records in the vulnerability database corresponds to an instance
+   of a vulnerability type. Every vulnerability has its own unique CVE ID.
+2, Assets. The assets include the software and the operating system (OS).
+3. Software. This is a subclass-of assets (e.g., Adobe Reader).
+4. OS. This is a subclass of assets (e.g., Ubuntu 14.04).
+5. Attack. Most attacks can be regarded as an intrusion aimed at a certain vulnerability. The
+   process of an attack can be a process of vulnerability exploitation.
+
+See the paper, `A Practical Approach to Constructing a Knowledge Graph for Cybersecurity -
+ScienceDirect <https://www.sciencedirect.com/science/article/pii/S2095809918301097>`_, for more information.
