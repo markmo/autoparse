@@ -86,6 +86,6 @@ Documentation
 
 8. `Security Information and Event Management (SIEM) information <docs/siem.rst>`_
 
-9. `Setup <docs/setup.rst>`_
+9. `Setup a test environment <docs/setup.rst>`_
 
 10. `Data Sources <docs/data_sources.rst>`_

@@ -1,5 +1,5 @@
-Setup
-=====
+Setup Test Environment
+======================
 
 1. Setup test ELK stack
 
