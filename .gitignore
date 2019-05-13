@@ -1,5 +1,6 @@
 *.pyc
 *.csv
+!data/hdfs/*.csv
 export
 *.xgmml
 **/.env
@@ -7,4 +8,3 @@ export
 Spell_result
 data/dark_owl
 .DS_Store
-data/dark_owl

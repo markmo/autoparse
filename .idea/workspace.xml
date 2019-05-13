@@ -5,44 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce3e88e5-c351-4e12-9663-2b4e05ad04c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/dark_owl/sample_input2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/data_sources.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/ontology.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/read_from_es.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/read_test.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.env.template" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/anomaly/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/anomaly/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/nifi_templates/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pyspell/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pyspell/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/read_from_es.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/read_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sigma/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sigma/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/markmo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/markmo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/process.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/process.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipaddress.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/spacy/ipaddress.jsonl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patterns.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/spacy/patterns.jsonl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/anomaly/data_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/decision_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/anomaly/decision_tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/detect.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/anomaly/detect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/anomaly/feature_extractor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filter.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sigma/filter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/filter.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/filter.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/invariants_miner.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/anomaly/invariants_miner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/load.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/load.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/load.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parse.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/parse.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spell.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pyspell/spell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spell_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pyspell/spell_stream.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.jsonl" beforeDir="false" afterPath="$PROJECT_DIR$/spacy/test.jsonl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -331,12 +294,12 @@
       <workItem from="1557626120821" duration="2485000" />
       <workItem from="1557631066393" duration="5672000" />
       <workItem from="1557638599450" duration="8811000" />
-      <workItem from="1557728694455" duration="7015000" />
+      <workItem from="1557728694455" duration="7391000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32614000" />
+    <option name="totallyTimeSpent" value="32990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="537" width="1680" height="460" extended-state="0" />
@@ -628,9 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -659,10 +619,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
