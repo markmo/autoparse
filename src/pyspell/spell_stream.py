@@ -320,16 +320,32 @@ def make_log_format_regex(log_format):
 
 def preprocess(line, regexs):
     params = []
-    formatted = ''
+    formatted = line
     for entity, regex in regexs.items():
-        matches = re.finditer(regex, line)
-        if matches:
-            formatted = re.sub(regex, '<{}>'.format(entity.upper()), line)
-            for match in matches:
-                token_start = len(line[:match.start()].split())
-                params.append([match.start(), match.end(), match.group(0), entity, token_start, token_start + 1])
+        # convert to list so we can see if empty without consuming the iterator
+        matches = list(re.finditer(regex, formatted))
+
+        # more efficient version
+        for match in matches:
+            start, end = match.start(), match.end()
+            formatted = '{}<{}>{}'.format(formatted[:start], entity.upper(), formatted[end:])
+            token_start = len(line[:start].split())
+            params.append([start, end, match.group(0), entity, token_start, token_start + 1])
+        # if not_empty(matches):
+        #     formatted = re.sub(regex, '<{}>'.format(entity.upper()), line)
+        #     for match in matches:
+        #         token_start = len(line[:match.start()].split())
+        #         params.append([match.start(), match.end(), match.group(0), entity, token_start, token_start + 1])
 
     return formatted, params
+
+
+def is_empty(collection: list) -> bool:
+    return len(collection) == 0
+
+
+def not_empty(collection: list) -> bool:
+    return len(collection) > 0
 
 
 def get_span(seq, idx):

@@ -1,3 +1,10 @@
 *.pyc
 *.csv
 export
+*.xgmml
+**/.env
+.ipynb_checkpoints
+Spell_result
+data/dark_owl
+.DS_Store
+data/dark_owl

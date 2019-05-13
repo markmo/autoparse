@@ -1,8 +1,13 @@
-from arango import ArangoClient
-from argparse import ArgumentParser
+"""
+Load entities and relations into ArangoDB from a stream emitted by `parse.py`.
+"""
+
 import hashlib
 import json
 import sys
+from argparse import ArgumentParser
+
+from arango import ArangoClient
 
 DB_NAME = 'cslogs'
 
@@ -141,6 +146,8 @@ def create_or_fetch_vertex_collection(graph, collection_name):
         return graph.vertex_collection(collection_name)
 
 
+# ArangoDB now supports 'repsert' ops
+# (https://docs.arangodb.com/devel/Manual/ReleaseNotes/NewFeatures34.html#repsert-operation)
 def upsert(resource, props):
     key = props['_key']
     if resource.has(key):

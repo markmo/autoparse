@@ -7,11 +7,12 @@ and look for patterns that highlight a potential threat or need for further inve
 The first step is to parse a wide variety of semi-structured logs. While a number of 
 standard log formats exist, many are application specific and contain natural language 
 messages that have relevant information. The time and cost to develop customer parsers 
-is too high, which is a constraining factor to mine potentially relevant sources for 
-information.
+is high, which is a constraining factor to mine additional potentially relevant sources
+for information.
 
 An automatic approach to parsing log records would open up the range of potentially 
-relevant sources to identify issues within time to act.
+relevant sources to identify threats.
+
 
 Introduction
 ------------
@@ -19,25 +20,62 @@ Introduction
 Networks are monitored to detect threats and perform analysis once a potential threat is
 identified. There are a number of challenges:
 
-1. Various network components and applications generate logs in various formats that must
-   be parsed for analysis. Outside the standard log formats, there is a constant backlog
-   of work to build parsers for new logs.
-2. In addition, the parsers generally extract structured information, but leave relevant
-   information within text fields.
-3. The extracted entities (and relations) form a natural graph. It would be useful to
-   analysts to create a graph that can be queries and linked to various external sources
-   such as malware databases, blacklisted IP addresses, and so on.
+1. Network components and applications generate logs in various formats that must be parsed
+   for analysis. Outside the standard log formats, there is a constant backlog of work to
+   build parsers for new logs.
+2. In addition, the parsers generally extract structured information but leave behind relevant
+   information in text fields.
+3. The extracted entities (and relations) form a natural graph. It would be useful to create
+   a graph that can be queries and linked to various external sources such as malware databases,
+   blacklisted IP addresses, and so on.
 
-We can use the graph structure to make predictions/perform inference. For example, there
-has been recent work with using a graph as input to an LSTM instead of a plain sequence.
+We can use the graph structure to make predictions and perform inference. For example, there
+has been recent research using a graph as input to a recurrent neural network (e.g. an LSTM).
 
 Our initial task is:
 
 1. A mechanism to extract entities into a graph representation. The entity types are defined
    in a UDM (Unified Data Model).
-2. Data engineering is required to get access to required data and process in a repeatable
-  and automated manner consistent with whatever standards have already been put in the place
-  for the project - or help define suitable standards were none exist.
+2. Data engineering is required to get access to required data and process it in a repeatable
+   and automated manner consistent with whatever standards have already been put in the place
+   for the project - or help define suitable standards.
+
+
+High-level Process Flow
+-----------------------
+
+1. Read logs from Elasticsearch and publish as a stream.
+
+   1b. (Option) Use Sigma to extract log records of interest from Elasticsearch using rules
+       that look for potential threats
+
+2. Parse stream using rules (e.g. regular expressions) and NLP named entity recognition (currently
+   using Spacy's out-of-the-box 'en_core_web_sm' model) to identify entities such as an IP address
+   in a log line.
+
+3. Process log lines using Spell to identify log keys (a recurring text pattern once you remove
+   parameters, either identified in step 2) or from the Spell algorithm as the changing part
+   of an otherwise static pattern.
+
+   3b. Anomaly detection given features extracted from logs parsed using Spell
+
+4. Process log keys using NLP (e.g. named entity recognition) to identify any additional entities
+   or relations
+
+5. Write entities and relations to the graph database (ArangoDB)
+
+6. Query the graph database for relevant analytics
+
+
+Documentation
+-------------
+
+1. `Design <docs/design.rst>`_
+2. `Process <docs/process.rst>`_
+3. `Ontology <docs/ontology.rst>`_
+4. `Setup <docs/setup.rst>`_
+5. `Data Sources <docs/data_sources.rst>`_
+6. `Security Information and Event Management (SIEM) information <docs/siem.rst>`_
 
 
 Cybersecurity Basics
@@ -201,7 +239,7 @@ The example ontology shown above, consists of the following five entity types:
 
 1. Vulnerability. Each of the records in the vulnerability database corresponds to an instance
    of a vulnerability type. Every vulnerability has its own unique CVE ID.
-2, Assets. The assets include the software and the operating system (OS).
+2. Assets. The assets include the software and the operating system (OS).
 3. Software. This is a subclass-of assets (e.g., Adobe Reader).
 4. OS. This is a subclass of assets (e.g., Ubuntu 14.04).
 5. Attack. Most attacks can be regarded as an intrusion aimed at a certain vulnerability. The

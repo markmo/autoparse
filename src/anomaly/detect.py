@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
-from data_util import load_event_sequences, load_hdfs_dataset
-from feature_extractor import FeatureExtractor
-from invariants_miner import InvariantsMiner
+from anomaly.data_util import load_event_sequences, load_hdfs_dataset
+from anomaly.feature_extractor import FeatureExtractor
+from anomaly.invariants_miner import InvariantsMiner
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).parent.parent

@@ -1,12 +1,19 @@
-from argparse import ArgumentParser
-from datetime import datetime
+#!/usr/bin/env python3
+"""
+Extract entities using rules and NLP, and templates using Spell, from log lines.
+"""
+
 import hashlib
 import json
 import os
 import re
-from spell import LogParser
-from spell_stream import get_span, LCSMap, make_log_format_regex, preprocess
+import spacy
 import sys
+from argparse import ArgumentParser
+from datetime import datetime
+
+from pyspell.spell import LogParser
+from pyspell.spell_stream import get_span, LCSMap, make_log_format_regex, preprocess
 
 
 # noinspection SpellCheckingInspection
@@ -30,6 +37,7 @@ def run(constants):
         'version': r'\b[vV]?\d+(\.\d+)+(-[0-9a-zA-Z]+)?\b',
         'number': r'\b(?<=\s)\d+(?=\s)\b',
     }
+    nlp = spacy.load("en_core_web_sm")
     log_format = constants['log_format'] or '<process>: <content>'
     if constants['is_stream']:
         slm = LCSMap(r'\s+')
@@ -40,7 +48,7 @@ def run(constants):
             try:
                 line = re.sub(r'[^\x00-\x7F]+', '<NASCII>', line.strip())
                 match = regex.search(line)
-                process = match.group('process')
+                process = match.group('process') if 'process' in match.groups() else None
                 content = match.group('content')
                 seq = re.split(r'\s+', content)  # compute before preprocess
                 content, params = preprocess(content, regexs)
@@ -53,6 +61,18 @@ def run(constants):
                         'token_end': p[5],
                         'entity': p[3],
                         'value': p[2]
+                    })
+
+                # extract entities using NLP
+                doc = nlp(content)
+                for ent in doc.ents:
+                    ps.append({
+                        'char_start': ent.start_char,
+                        'char_end': ent.end_char,
+                        'token_start': ent.start,
+                        'token_end': ent.end,
+                        'entity': ent.label,
+                        'value': ent.text
                     })
 
                 obj = slm.insert(content)
@@ -100,11 +120,10 @@ def run(constants):
                     'params': ps
                 }))
             except Exception as e:
-                # raise e
                 pass
 
         # with open(os.path.join(root_dir, 'Spell_result/log_keys.txt'), 'w') as f:
-        with open(os.path.join('/Users/d777710/src/cybersecurity/output', 'log_keys.txt'), 'w') as f:
+        with open(os.path.join(os.getenv('LOG_KEYS_OUTPUT_DIR'), 'log_keys.txt'), 'w') as f:
             f.write('\n'.join(log_keys))
 
     else:

@@ -1,12 +1,27 @@
-from argparse import ArgumentParser
+"""
+Filters records from a backend log aggregator such as Elasticsearch that contain
+a signature indicative of potential malicious behaviour.
+
+Dependency on rules within the Neo23x0/sigma source code repository. By default,
+the sigma source location is expected under the `src` folder within the user's
+home directory.
+::
+
+    cd ~
+    git clone https://github.com/Neo23x0/sigma.git
+
+"""
+
 import itertools
 import logging
+import sys
+from argparse import ArgumentParser
 from pathlib import Path
+
+import yaml
 from sigma.backends.exceptions import BackendError, FullMatchError, NotSupportedError, PartialMatchError
 from sigma.parser.collection import SigmaCollectionParser
 from sigma.parser.exceptions import SigmaCollectionParseError, SigmaParseError
-import sys
-import yaml
 
 DEFAULT_RULES_DIR = Path.home() / 'src/sigma/rules'
 DEFAULT_OUTPUT_DIR = Path('/tmp/autoparse')
