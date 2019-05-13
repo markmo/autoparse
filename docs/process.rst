@@ -1,7 +1,7 @@
 Process
 =======
 
-1. Filter log entries from Elasticsearch using `neo23x0/sigma <https://github.com/Neo23x0/sigma>`_.
+1. Filter log entries from Elasticsearch using `Neo23x0/sigma <https://github.com/Neo23x0/sigma>`_.
 
    This uses a ruleset to identify log entries of interest for further processing.
    An example rule is shown below, followed by example output
