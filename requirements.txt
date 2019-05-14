@@ -39,6 +39,7 @@ ptyprocess==0.6.0
 Pygments==2.3.1
 pymisp==2.4.103
 pyrsistent==0.14.11
+pytest==4.5.0
 python-arango==4.4.0
 python-dateutil==2.8.0
 python-dotenv==0.10.1

@@ -2,13 +2,17 @@ Setup Test Environment
 ======================
 
 1. Setup test ELK stack
-
 ::
 
-    docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+   docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
 
-    or
+   or
 
-    docker start elk
+   docker start elk
 
 2. Open Kibana at http://localhost:5601
+
+3. Download Spacy model
+::
+
+   python -m spacy download en_core_web_sm
