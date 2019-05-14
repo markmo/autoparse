@@ -11,6 +11,7 @@ elasticsearch==7.0.1
 elasticsearch-dsl==7.0.0
 entrypoints==0.3
 idna==2.8
+iocextract==1.13.1
 ipykernel==5.1.0
 ipython==7.4.0
 ipython-genutils==0.2.0

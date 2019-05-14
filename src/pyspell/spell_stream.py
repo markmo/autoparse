@@ -31,6 +31,7 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
+import iocextract
 import json
 import pickle
 import re
@@ -316,6 +317,54 @@ def make_log_format_regex(log_format):
 
     regex = re.compile('^' + regex + '$')
     return columns, regex
+
+
+def get_ioc_param(ioc_type, ioc, line):
+    char_start = line.find(ioc)
+    char_end = char_start + len(ioc)
+    token_start = len(re.split(r'\s+', line[:char_start])) - 1
+    token_end = token_start + 1
+    return [char_start, char_end, ioc, ioc_type, token_start, token_end]
+
+
+def ioc_parse(line):
+    """ Use library that can handle defanged formats for IOCs (Indicators of Compromise) """
+    params = []
+    formatted = line
+    for url in iocextract.extract_urls(formatted, strip=True):
+        refanged = iocextract.refang_url(url)
+        param = get_ioc_param('url', url, formatted)
+        params.append(param.append(refanged))
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], url, formatted[param[1]:])
+
+    for ip in iocextract.extract_ipv4s(formatted):
+        refanged = iocextract.refang_ipv4(ip)
+        param = get_ioc_param('ip_address', ip, formatted)
+        params.append(param.append(refanged))
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
+
+    for ip in iocextract.extract_ipv6s(formatted):
+        param = get_ioc_param('ip_address', ip, formatted)
+        params.append(param)
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
+
+    for email in iocextract.extract_emails(formatted):
+        refanged = iocextract.refang_email(email)
+        param = get_ioc_param('email', email, formatted)
+        params.append(param.append(refanged))
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], email, formatted[param[1]:])
+
+    for h in iocextract.extract_hashes(formatted):
+        param = get_ioc_param('hash', h, formatted)
+        params.append(param)
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], h, formatted[param[1]:])
+
+    for rule in iocextract.extract_yara_rules(formatted):
+        param = get_ioc_param('yara_rule', rule, formatted)
+        params.append(param)
+        formatted = '{}<{}>{}'.format(formatted[:param[0]], rule, formatted[param[1]:])
+
+    return formatted, params
 
 
 def preprocess(line, regexs):

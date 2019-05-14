@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce3e88e5-c351-4e12-9663-2b4e05ad04c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_parsing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/autoparse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/autoparse.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/markmo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/markmo.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/setup.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/setup.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/knowledge_graph.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/knowledge_graph.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pyspell/spell_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/pyspell/spell_stream.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +19,50 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/parse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="e#113#127#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pyspell/spell_stream.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="603">
+              <caret line="368" selection-start-line="368" selection-end-line="368" />
+              <folding>
+                <element signature="e#1560#1577#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,21 +127,22 @@
         <option value="$PROJECT_DIR$/docs/domain_basics.md" />
         <option value="$PROJECT_DIR$/docs/spell.rst" />
         <option value="$PROJECT_DIR$/docs/extracting_message_types.rst" />
-        <option value="$PROJECT_DIR$/docs/knowledge_graph.rst" />
         <option value="$PROJECT_DIR$/README.rst" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/docs/setup.rst" />
         <option value="$PROJECT_DIR$/src/config.py" />
-        <option value="$PROJECT_DIR$/src/parse.py" />
         <option value="$PROJECT_DIR$/src/load.py" />
         <option value="$PROJECT_DIR$/tests/test_parsing.py" />
+        <option value="$PROJECT_DIR$/docs/knowledge_graph.rst" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/src/pyspell/spell_stream.py" />
+        <option value="$PROJECT_DIR$/src/parse.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1311" />
-    <option name="height" value="974" />
+    <option name="y" value="101" />
+    <option name="width" value="1680" />
+    <option name="height" value="896" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -119,24 +161,6 @@
               <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoparse" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoparse" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pyspell" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoparse" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sigma" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="autoparse" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Spell_result" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
@@ -281,7 +305,7 @@
       <workItem from="1557728694455" duration="8610000" />
       <workItem from="1557798957205" duration="2944000" />
       <workItem from="1557808023600" duration="86000" />
-      <workItem from="1557819630642" duration="3923000" />
+      <workItem from="1557819630642" duration="9640000" />
     </task>
     <servers />
   </component>
@@ -318,10 +342,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41162000" />
+    <option name="totallyTimeSpent" value="46879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="974" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17643468" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -338,7 +363,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32993197" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -565,18 +590,8 @@
     <entry file="file://$PROJECT_DIR$/docs/extracting_message_types.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pyspell/spell.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -587,33 +602,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/setup.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pyspell/spell_stream.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="320" column="4" selection-start-line="320" selection-start-column="4" selection-end-line="320" selection-end-column="4" />
-          <folding>
-            <element signature="e#1560#1571#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/parse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1032">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-          <folding>
-            <element signature="e#113#127#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/read_test.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,6 +650,43 @@
           <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="17" lean-forward="true" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pyspell/spell_stream.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="368" selection-start-line="368" selection-end-line="368" />
+          <folding>
+            <element signature="e#1560#1577#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#113#127#0" expanded="true" />
           </folding>
         </state>
       </provider>

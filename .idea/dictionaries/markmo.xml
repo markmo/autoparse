@@ -4,10 +4,14 @@
       <w>addrs</w>
       <w>arango</w>
       <w>autoparse</w>
+      <w>convolutional</w>
       <w>cyber</w>
       <w>cybersecurity</w>
+      <w>defanged</w>
       <w>elasticsearch</w>
       <w>getenv</w>
+      <w>homophily</w>
+      <w>hyperparameter</w>
       <w>kibana</w>
       <w>lstm</w>
       <w>malware</w>
@@ -16,6 +20,7 @@
       <w>preprocessing</w>
       <w>procs</w>
       <w>pythonpath</w>
+      <w>refanged</w>
       <w>regexs</w>
       <w>siem</w>
       <w>spacy</w>
@@ -23,6 +28,7 @@
       <w>subsequence</w>
       <w>upsert</w>
       <w>uuids</w>
+      <w>yara</w>
     </words>
   </dictionary>
 </component>

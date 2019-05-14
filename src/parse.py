@@ -15,7 +15,7 @@ import spacy
 
 from config import REGEXS
 from pyspell.spell import LogParser
-from pyspell.spell_stream import get_span, LCSMap, make_log_format_regex, preprocess
+from pyspell.spell_stream import get_span, ioc_parse, LCSMap, make_log_format_regex, preprocess
 
 
 # noinspection SpellCheckingInspection
@@ -35,7 +35,15 @@ def run(constants):
                 process = match.group('process') if 'process' in match.groups() else None
                 content = match.group('content')
                 seq = re.split(r'\s+', content)  # compute before preprocess
-                content, params = preprocess(content, REGEXS)
+
+                # handle defanged indicators of compromise
+                content, params1 = ioc_parse(content)
+
+                # catch the rest
+                content, params2 = preprocess(content, REGEXS)
+
+                params = params1 + params2
+
                 ps = []
                 for p in params:
                     ps.append({
