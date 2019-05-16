@@ -4,6 +4,7 @@ Read log records from Elasticsearch. Emits a stream to `stdout`.
 """
 
 import os
+import sys
 from argparse import ArgumentParser
 
 from elasticsearch import Elasticsearch
@@ -20,12 +21,17 @@ def run(constants):
     client = Elasticsearch([host], http_auth=(user, password))
     s = Search(using=client, index=index)
 
+    max_lines = constants.get('max_lines', sys.maxsize)
+    i = 0
     if constants['is_stream']:
         for hit in s:
             for result in hit.results:
                 for line in result.body.splitlines():
                     if len(line) > 0:
                         print(line)
+                        i += 1
+                        if i == max_lines:
+                            sys.exit(0)
 
 
 if __name__ == '__main__':
@@ -35,6 +41,8 @@ if __name__ == '__main__':
     parser.add_argument('--index', dest='index', type=str, help='elasticsearch index')
     parser.add_argument('--user', dest='username', type=str, help='elasticsearch user')
     parser.add_argument('--password', dest='password', type=str, help='elasticsearch password')
+    parser.add_argument('--maxlines', dest='max_lines', type=int, default=-1,
+                        help='maximum number of log lines to read')
     parser.add_argument('--stream', dest='is_stream', help='set streaming mode', action='store_true')
     parser.set_defaults(is_stream=False)
     args = parser.parse_args()

@@ -31,8 +31,12 @@ Types of Analyses
 -----------------
 
 * Finding natural clusters (Refs: 3, 4)
+
 * Predicting if a relationship exists between two nodes (‘link prediction’) (Refs: 2)
+
 * Scoring and classification of nodes, edges and whole graphs
+
+* Community detection
 
 
 Concepts

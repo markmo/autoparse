@@ -6,15 +6,18 @@
       <w>autoparse</w>
       <w>convolutional</w>
       <w>cyber</w>
+      <w>cybersec</w>
       <w>cybersecurity</w>
       <w>defanged</w>
       <w>elasticsearch</w>
       <w>getenv</w>
       <w>homophily</w>
       <w>hyperparameter</w>
+      <w>jsonl</w>
       <w>kibana</w>
       <w>lstm</w>
       <w>malware</w>
+      <w>maxlines</w>
       <w>nifi</w>
       <w>ontologies</w>
       <w>preprocessing</w>

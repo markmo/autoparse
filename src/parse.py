@@ -55,7 +55,11 @@ def run(constants):
                         'value': p[2]
                     })
 
+                # TODO include the refanged value if present
+
                 # extract entities using NLP
+                # I'm not expecting anything from the out-of-the-box model
+                # it must be trained using domain-specific data.
                 doc = nlp(content)
                 for ent in doc.ents:
                     ps.append({
@@ -114,14 +118,15 @@ def run(constants):
             except Exception as e:
                 pass
 
+        # TODO write log keys periodically
         # with open(os.path.join(root_dir, 'Spell_result/log_keys.txt'), 'w') as f:
-        with open(os.path.join(os.getenv('LOG_KEYS_OUTPUT_DIR'), 'log_keys.txt'), 'w') as f:
+        with open(os.path.join(os.getenv('OUTPUT_DIR'), 'log_keys.txt'), 'w') as f:
             f.write('\n'.join(log_keys))
 
     else:
         tau = constants['tau'] or 0.5
         output_dir = constants['output_dir'] or 'Spell_result/'
-        log_parser = LogParser(constants['log_dir'], constants['filename'], output_dir, log_format, tau, regexs)
+        log_parser = LogParser(constants['log_dir'], constants['filename'], output_dir, log_format, tau, REGEXS)
         log_parser.parse(constants['filename'])
 
 

@@ -334,13 +334,15 @@ def ioc_parse(line):
     for url in iocextract.extract_urls(formatted, strip=True):
         refanged = iocextract.refang_url(url)
         param = get_ioc_param('url', url, formatted)
-        params.append(param.append(refanged))
+        param.append(refanged)
+        params.append(param)
         formatted = '{}<{}>{}'.format(formatted[:param[0]], url, formatted[param[1]:])
 
     for ip in iocextract.extract_ipv4s(formatted):
         refanged = iocextract.refang_ipv4(ip)
         param = get_ioc_param('ip_address', ip, formatted)
-        params.append(param.append(refanged))
+        param.append(refanged)
+        params.append(param)
         formatted = '{}<{}>{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
 
     for ip in iocextract.extract_ipv6s(formatted):
@@ -351,7 +353,8 @@ def ioc_parse(line):
     for email in iocextract.extract_emails(formatted):
         refanged = iocextract.refang_email(email)
         param = get_ioc_param('email', email, formatted)
-        params.append(param.append(refanged))
+        param.append(refanged)
+        params.append(param)
         formatted = '{}<{}>{}'.format(formatted[:param[0]], email, formatted[param[1]:])
 
     for h in iocextract.extract_hashes(formatted):

@@ -20,3 +20,15 @@ when people need to access it, particularly during emergencies or disasters. The
 specialists should handle the three common challenges for availability; denial of service (DoS),
 loss of information system capabilities because of natural disasters and equipment failures
 during a normal operation.
+
+Security operations is fundamentally a data problem. Machines perform the heavy lifting
+(data aggregation, pattern recognition, etc.) and provide a manageable number of actionable
+insights. From there, human analysts make decisions on how to act.
+
+A graph-based approach centers on preserving the context of events by decomposing constituent
+observable data into a graph representation of all cyber artifacts, from all data streams.
+
+By doing this, we are generating a proprietary new dataset representing an organization’s
+historical incident data. By structuring this data as a graph, we can preserve relationships
+across all of the data elements and then apply various algorithms (e.g., path traversal,
+community detection, machine learning) to surface informative relationships.

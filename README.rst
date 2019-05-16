@@ -14,6 +14,43 @@ An automatic approach to parsing log records would open up the range of potentia
 relevant sources to identify threats.
 
 
+Run
+---
+
+1. Modules support batch or stream mode. In stream mode, modules can be piped together
+
+::
+
+    python read_from_es.py --stream | python parse.py --stream
+
+or, as a convenience, using the provided bash scripts that include dependencies from
+a virtualenv
+
+::
+
+    ./scripts/read_from_es.sh -1 | ./scripts/parse.py
+
+or trigger via a web service
+
+::
+
+    ./scripts/api.sh
+
+    curl -X POST localhost:8000/logs
+
+The above can also be deployed as a Docker container
+
+::
+
+    docker-compose up
+
+    curl -X POST localhost:8000/logs
+
+Environment variables must be configured in `.env` or `.env.docker` for the docker build.
+
+The default output directory is `/tmp/cybersec/output`.
+
+
 Introduction
 ------------
 
