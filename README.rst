@@ -14,10 +14,36 @@ An automatic approach to parsing log records would open up the range of potentia
 relevant sources to identify threats.
 
 
+General Approach
+----------------
+
+Firstly, logs from a variety of sources are parsed to extract entities and their relationships
+into a graph representation. Logs consist of semi-structured documents (lines of text, JSON, XML,
+or binary messages). A log document may have delimited fields and embedded free-form text. Using
+NLP techniques may be of use. However, the grammar and syntax of log documents are probably not
+as consistent as human language.
+
+On the other hand, we can leverage the fact that logs consist of repeating templates (print
+statements with interpolated variables).
+
+We will therefore first extract these templates and variables using an algorithm called
+Spell (Streaming Parser for Event Logs using Longest Common Subsequence), and a set of rules
+to identify common entities such as IP Address, thus reducing the amount of work that NLP
+techniques have to do as a secondary extraction step.
+
+Once the relevant entities and relations have been inserted into the graph store, we will
+apply various graph analytics and machine learning approaches to:
+
+* Detect anomalies
+* Identify communities (sub-graphs)
+* Score and classify nodes, edges, or communities
+* Predict relationships, e.g. to known indicators of compromise or attack
+
+
 Run
 ---
 
-1. Modules support batch or stream mode. In stream mode, modules can be piped together
+Modules support batch or stream mode. In stream mode, modules can be piped together
 
 ::
 
@@ -49,6 +75,9 @@ The above can also be deployed as a Docker container
 Environment variables must be configured in `.env` or `.env.docker` for the docker build.
 
 The default output directory is `/tmp/cybersec/output`.
+
+There is also a `NiFi <https://nifi.apache.org/>`_ template for setting up a stream-based
+flow, under `src/nifi_templates`.
 
 
 Introduction

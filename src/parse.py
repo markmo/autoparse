@@ -106,6 +106,11 @@ def run(constants):
                 if log_key not in log_keys:
                     log_keys.append(log_key)
 
+                    # TODO hack to enable forked outputs
+                    # a more robust streaming infrastructure such as `Faust <https://github.com/robinhood/faust>`_
+                    # with a Kafka broker would be the way to go
+                    print(log_key, file=sys.stderr)
+
                 print(json.dumps({
                     'log_id': log_id,
                     'line': line,
@@ -118,10 +123,8 @@ def run(constants):
             except Exception as e:
                 pass
 
-        # TODO write log keys periodically
-        # with open(os.path.join(root_dir, 'Spell_result/log_keys.txt'), 'w') as f:
-        with open(os.path.join(os.getenv('OUTPUT_DIR'), 'log_keys.txt'), 'w') as f:
-            f.write('\n'.join(log_keys))
+        # with open(os.path.join(os.getenv('OUTPUT_DIR'), 'log_keys.txt'), 'w') as f:
+        #     f.write('\n'.join(log_keys))
 
     else:
         tau = constants['tau'] or 0.5
