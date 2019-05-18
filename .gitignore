@@ -1,6 +1,7 @@
 *.pyc
 *.csv
 !data/hdfs/*.csv
+!data/malicious_urls/*.csv
 export
 *.xgmml
 **/.env
