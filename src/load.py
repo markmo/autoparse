@@ -4,21 +4,30 @@ Load entities and relations into ArangoDB from a stream emitted by `parse.py`.
 
 import hashlib
 import json
+import os
 import sys
 from argparse import ArgumentParser
 
 from arango import ArangoClient
 
-DB_NAME = 'cslogs'
+import settings
 
 
 def run(constants):
-    client = ArangoClient(protocol='http', host='localhost', port=8529)
-    sys_db = client.db('_system', username='root', password='')
-    if not sys_db.has_database(DB_NAME):
-        sys_db.create_database(DB_NAME)
+    protocol = os.getenv('ARANGODB_PROTOCOL') or 'http'
+    host = os.getenv('ARANGODB_HOST') or 'localhost'
+    port = os.getenv('ARANGODB_PORT') or 8529
+    dbname = os.getenv('ARANGODB_NAME') or 'cslogs'
+    sys_username = os.getenv('ARANGODB_SYS_USERNAME')
+    sys_password = os.getenv('ARANGODB_SYS_PASSWORD')
+    username = os.getenv('ARANGODB_USERNAME')
+    password = os.getenv('ARANGODB_PASSWORD')
+    client = ArangoClient(protocol=protocol, host=host, port=port)
+    sys_db = client.db('_system', username=sys_username, password=sys_password)
+    if not sys_db.has_database(dbname):
+        sys_db.create_database(dbname)
 
-    db = client.db(DB_NAME, username='root', password='password')
+    db = client.db(dbname, username=username, password=password)
     # logs = db.create_collection('logs')
     # logs.add_hash_index(fields=['log_id'], unique=True)
     if not db.has_graph('logs'):
@@ -72,7 +81,7 @@ def run(constants):
             log = json.loads(line.strip())
             log_id = log['log_id']
             event_id = str(log['event_id'])
-            print('upsert log:', log_id, log['line'])
+            # print('upsert log:', log_id, log['line'])
             upsert(logs, {
                 '_key': log_id,
                 'name': log_id,
@@ -134,7 +143,9 @@ def upsert_param(param, root_id, root_name, vertex_coll, edge_coll):
 
 def create_or_fetch_edge_collection(graph, collection_name, **kwargs):
     if not graph.has_edge_definition(collection_name):
-        return graph.create_edge_definitions(edge_collection=collection_name, *kwargs)
+        return graph.create_edge_definition(collection_name,
+                                            kwargs['from_vertex_collections'],
+                                            kwargs['to_vertex_collections'])
     else:
         return graph.edge_collection(collection_name)
 

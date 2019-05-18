@@ -3,12 +3,19 @@
     <words>
       <w>addrs</w>
       <w>arango</w>
+      <w>arangod</w>
+      <w>arangodb</w>
       <w>autoparse</w>
+      <w>bilstm</w>
       <w>convolutional</w>
+      <w>crossentropy</w>
+      <w>cslogs</w>
       <w>cyber</w>
       <w>cybersec</w>
       <w>cybersecurity</w>
+      <w>dbname</w>
       <w>defanged</w>
+      <w>defmaxlines</w>
       <w>elasticsearch</w>
       <w>getenv</w>
       <w>homophily</w>
@@ -25,7 +32,10 @@
       <w>pythonpath</w>
       <w>refanged</w>
       <w>regexs</w>
+      <w>rmsprop</w>
+      <w>sebp</w>
       <w>siem</w>
+      <w>softmax</w>
       <w>spacy</w>
       <w>steganography</w>
       <w>subsequence</w>

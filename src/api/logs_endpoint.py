@@ -21,6 +21,8 @@ class LogsResource(object):
         read = Popen(['python', f'{ROOT}/read_from_es.py', '--stream', '--maxlines', '-1'], stdout=PIPE)
         parse = Popen(['python', f'{ROOT}/parse.py', '--stream', '--log-format', '<content>'],
                       stdin=read.stdout, stdout=PIPE, stderr=PIPE)
+        load = Popen(['python', f'{ROOT}/load.py', '--stream'], stdin=parse.stdout, stdout=PIPE)
+
         log_lines = parse.stdout
         log_keys = parse.stderr  # TODO hack to capture two outputs from `parse`
         output_dir = os.getenv('OUTPUT_DIR')
@@ -38,9 +40,3 @@ class LogsResource(object):
         with open(path, 'w') as f:
             for line in lines:
                 f.write(line.decode('utf-8'))
-
-
-app = falcon.API()
-logs = LogsResource()
-
-app.add_route('/logs', logs)

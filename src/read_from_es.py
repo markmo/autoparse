@@ -15,7 +15,7 @@ import settings
 def run(constants):
     host = constants['host'] or os.getenv('ES_HOST')
     index = constants['index'] or os.getenv('ES_INDEX')
-    user = constants['username'] or os.getenv('ES_USER')
+    user = constants['username'] or os.getenv('ES_USERNAME')
     password = constants['password'] or os.getenv('ES_PASSWORD')
 
     client = Elasticsearch([host], http_auth=(user, password))

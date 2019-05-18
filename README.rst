@@ -47,14 +47,14 @@ Modules support batch or stream mode. In stream mode, modules can be piped toget
 
 ::
 
-    python read_from_es.py --stream | python parse.py --stream
+    python read_from_es.py --stream | python parse.py --stream 2>/dev/null | python load.py --stream
 
 or, as a convenience, using the provided bash scripts that include dependencies from
 a virtualenv
 
 ::
 
-    ./scripts/read_from_es.sh -1 | ./scripts/parse.py
+    ./scripts/read_from_es.sh -1 | ./scripts/parse.sh 2>/dev/null | ./scripts/load.sh
 
 or trigger via a web service
 
