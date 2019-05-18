@@ -132,6 +132,17 @@ High-level Process Flow
 
 6. Query the graph database for relevant analytics
 
+The main challenge with applying machine learning to the graph data is availability of relevant
+labelled datasets. Most approaches use supervised learning which requires data examples to learn
+from.
+
+Starting with the simplest example I could think of (due to availability of a training set), we will
+score URLs found from logs on likelihood of being an address to a phishing or otherwise malicious
+site. We will train a Deep Learning model for this purpose, based on comparative benchmarks of
+performance from a literature search.
+
+The model can be found under `src/ml <src/ml/README.rst>`_.
+
 
 Documentation
 -------------

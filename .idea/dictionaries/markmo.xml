@@ -13,6 +13,7 @@
       <w>cyber</w>
       <w>cybersec</w>
       <w>cybersecurity</w>
+      <w>datasets</w>
       <w>dbname</w>
       <w>defanged</w>
       <w>defmaxlines</w>
@@ -33,6 +34,7 @@
       <w>moloney</w>
       <w>nifi</w>
       <w>ontologies</w>
+      <w>phishing</w>
       <w>preprocessing</w>
       <w>procs</w>
       <w>pytest</w>
