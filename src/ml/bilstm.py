@@ -29,15 +29,15 @@ class BiLstmPredictor(object):
 
     @staticmethod
     def get_config_path(model_dir_path):
-        return model_dir_path / (BiLstmPredictor.model_name + '-config.npy')
+        return str(model_dir_path / (BiLstmPredictor.model_name + '-config.npy'))
 
     @staticmethod
     def get_weights_path(model_dir_path):
-        return model_dir_path / (BiLstmPredictor.model_name + '-weights.h5')
+        return str(model_dir_path / (BiLstmPredictor.model_name + '-weights.h5'))
 
     @staticmethod
     def get_arch_path(model_dir_path):
-        return model_dir_path / (BiLstmPredictor.model_name + '-arch.json')
+        return str(model_dir_path / (BiLstmPredictor.model_name + '-arch.json'))
 
     def load_model(self, model_dir_path):
         config_file_path = self.get_config_path(model_dir_path)
@@ -94,5 +94,5 @@ class BiLstmPredictor(object):
         history = self.model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1,
                                  validation_data=(x_test, y_test), callbacks=[checkpoint])
         self.model.save_weights(weights_file_path)
-        np.save(model_dir_path + '/' + BiLstmPredictor.model_name + '-history.npy', history.history)
+        np.save(str(model_dir_path / (BiLstmPredictor.model_name + '-history.npy')), history.history)
         return history
