@@ -4,6 +4,7 @@
 export
 *.xgmml
 **/.env
+**/.env.docker
 .ipynb_checkpoints
 Spell_result
 data/dark_owl

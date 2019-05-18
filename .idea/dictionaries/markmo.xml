@@ -16,29 +16,40 @@
       <w>dbname</w>
       <w>defanged</w>
       <w>defmaxlines</w>
+      <w>dotenv</w>
       <w>elasticsearch</w>
       <w>getenv</w>
+      <w>gunicorn</w>
       <w>homophily</w>
       <w>hyperparameter</w>
+      <w>iocextract</w>
       <w>jsonl</w>
+      <w>keras</w>
       <w>kibana</w>
       <w>lstm</w>
       <w>malware</w>
+      <w>matplotlib</w>
       <w>maxlines</w>
+      <w>moloney</w>
       <w>nifi</w>
       <w>ontologies</w>
       <w>preprocessing</w>
       <w>procs</w>
+      <w>pytest</w>
       <w>pythonpath</w>
       <w>refanged</w>
       <w>regexs</w>
       <w>rmsprop</w>
+      <w>scikit</w>
+      <w>scipy</w>
       <w>sebp</w>
       <w>siem</w>
+      <w>sigmatools</w>
       <w>softmax</w>
       <w>spacy</w>
       <w>steganography</w>
       <w>subsequence</w>
+      <w>tensorflow</w>
       <w>upsert</w>
       <w>uuids</w>
       <w>yara</w>
