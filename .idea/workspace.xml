@@ -35,15 +35,8 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ml/node2vec/node2vec.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="232" column="12" selection-start-line="232" selection-start-column="12" selection-end-line="232" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
     </leaf>
@@ -135,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/ml/url_classifier/README.rst" />
         <option value="$PROJECT_DIR$/README.rst" />
         <option value="$PROJECT_DIR$/docs/knowledge_graph.rst" />
-        <option value="$PROJECT_DIR$/src/ml/node2vec/README.rst" />
         <option value="$PROJECT_DIR$/src/ml/node2vec/node2vec.py" />
+        <option value="$PROJECT_DIR$/src/ml/node2vec/README.rst" />
       </list>
     </option>
   </component>
@@ -376,7 +369,7 @@
       <workItem from="1558244119720" duration="110000" />
       <workItem from="1558244274260" duration="28000" />
       <workItem from="1558253521472" duration="1094000" />
-      <workItem from="1558260243258" duration="7983000" />
+      <workItem from="1558260243258" duration="8251000" />
     </task>
     <servers />
   </component>
@@ -413,10 +406,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107462000" />
+    <option name="totallyTimeSpent" value="107730000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="524" width="1680" height="473" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="974" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1910867" />
@@ -752,27 +745,27 @@
     <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/README.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ml/node2vec/node2vec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="232" column="12" selection-start-line="232" selection-start-column="12" selection-end-line="232" selection-end-column="12" />
+        <state relative-caret-position="1800">
+          <caret line="120" column="73" lean-forward="true" selection-start-line="120" selection-start-column="73" selection-end-line="120" selection-end-column="73" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
 </project>

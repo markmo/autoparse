@@ -21,7 +21,7 @@ basically more complex in structure than text.
 To solve that, node2vec uses a tunable sampling strategy. It generates random walks from each node
 of the graph.
 
-.. image:: ../images/node2vec.png
+.. image:: ../../../images/node2vec.png
 
 Node2vec's sampling strategy accepts four hyperparameters:
 
@@ -37,7 +37,7 @@ And also the standard skip-gram hyperparameters such as context window size and 
 Consider that you are on a random walk and have just transitioned from node `<t>` to node `<v>` in
 the following diagram (taken from the article).
 
-.. image:: ../images/node2vec_transition.png
+.. image:: ../../../images/node2vec_transition.png
 
 The probability of transition from `<v>` to any one of its neighbours is `<edge weight> x <alpha>`
 (normalized), where `<alpha>` is determined by the hyperparameter settings.
