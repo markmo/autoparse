@@ -22,7 +22,7 @@ def run(constant_overwrites):
     model_path = ROOT / os.getenv('MODELS_DIR')
     report_path = ROOT / os.getenv('REPORTS_DIR')
     np.random.seed(random_state)
-    url_data = load_url_data(data_path, sample=True)
+    url_data = load_url_data(data_path, sample=False)
     text_model = extract_text_model(url_data['url'])
     text_model['embed_dim'] = embed_dim
     classifier = BiLstmPredictor()
