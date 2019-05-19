@@ -79,6 +79,9 @@ The default output directory is `/tmp/cybersec/output`.
 There is also a `NiFi <https://nifi.apache.org/>`_ template for setting up a stream-based
 flow, under `src/nifi_templates`.
 
+Alternatively, setup a streaming infrastructure such as Kafka Streams, `Faust <https://github.com/robinhood/faust>`_,
+or equivalent.
+
 
 Introduction
 ------------
