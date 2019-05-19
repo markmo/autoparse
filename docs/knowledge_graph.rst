@@ -42,7 +42,7 @@ Types of Analyses
 Concepts
 --------
 
-* Node2Vec
+* Node2vec
 
   * **Homophily**. Similar nodes are located nearby.
 

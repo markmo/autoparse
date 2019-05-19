@@ -120,6 +120,9 @@ def run(constants):
                     upsert_param(param, log_id, 'logs', mem_addrs, has_mem_addr)
                 elif param['entity'] == 'uuid':
                     upsert_param(param, log_id, 'logs', uuids, has_uuid)
+
+            print(line.strip())
+
     else:
         raise NotImplementedError
 

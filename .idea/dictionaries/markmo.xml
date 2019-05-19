@@ -6,6 +6,7 @@
       <w>arangod</w>
       <w>arangodb</w>
       <w>autoparse</w>
+      <w>baselining</w>
       <w>bilstm</w>
       <w>convolutional</w>
       <w>crossentropy</w>
@@ -19,11 +20,16 @@
       <w>defmaxlines</w>
       <w>dotenv</w>
       <w>elasticsearch</w>
+      <w>embedder</w>
+      <w>gensim</w>
       <w>getenv</w>
       <w>gunicorn</w>
+      <w>hadamard</w>
       <w>homophily</w>
       <w>hyperparameter</w>
+      <w>hyperparameters</w>
       <w>iocextract</w>
+      <w>joblib</w>
       <w>jsonl</w>
       <w>keras</w>
       <w>kibana</w>
@@ -32,9 +38,14 @@
       <w>matplotlib</w>
       <w>maxlines</w>
       <w>moloney</w>
+      <w>ndarray</w>
       <w>nifi</w>
       <w>ontologies</w>
+      <w>pbar</w>
       <w>phishing</w>
+      <w>precalculating</w>
+      <w>precomputes</w>
+      <w>precomputing</w>
       <w>preprocessing</w>
       <w>procs</w>
       <w>pytest</w>
@@ -45,15 +56,20 @@
       <w>scikit</w>
       <w>scipy</w>
       <w>sebp</w>
+      <w>sharedmem</w>
       <w>siem</w>
       <w>sigmatools</w>
       <w>softmax</w>
       <w>spacy</w>
       <w>steganography</w>
+      <w>subgraphs</w>
       <w>subsequence</w>
       <w>tensorflow</w>
+      <w>unnormalized</w>
       <w>upsert</w>
       <w>uuids</w>
+      <w>vec</w>
+      <w>wikipedia</w>
       <w>yara</w>
     </words>
   </dictionary>

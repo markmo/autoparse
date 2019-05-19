@@ -13,6 +13,7 @@ information.
 An automatic approach to parsing log records would open up the range of potentially
 relevant sources to identify issues within time to act.
 
+
 1. Applying Natural Language Processing (NLP)
 ---------------------------------------------
 
@@ -25,6 +26,7 @@ each record (event) type, which can be learned using features such as position o
 in a sequence, key terms, case, etc.
 
 The general approach is to use Named Entity Recognition (NER) and Relation Extraction.
+
 
 Named Entity Recognition
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,6 +84,7 @@ sufficiently labelled records exist.
 It is probably worthwhile baselining results against a simple CRF model using standard features.
 An out-of-the-box model such as from Spacy or Stanford NLP libraries is unlikely to perform given
 the specialised terms.
+
 
 Pre-processing Step
 ^^^^^^^^^^^^^^^^^^^

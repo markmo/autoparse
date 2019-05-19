@@ -6,8 +6,7 @@ from pathlib import Path
 
 from arango import ArangoClient
 
-from ml.bilstm import BiLstmPredictor
-import settings
+from ml.url_classifier.bilstm import BiLstmPredictor
 
 ROOT = Path(__file__).parent.parent
 
@@ -27,7 +26,7 @@ def scan_for_malicious_urls(constants):
                     else:
                         param['meta'] = {'malicious_warning': False}
 
-            print(log)
+            print(json.dumps(log))
 
     else:
         db = get_db()

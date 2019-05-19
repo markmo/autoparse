@@ -4,10 +4,9 @@ import os
 
 import numpy as np
 
-from ml.bilstm import BiLstmPredictor
-from ml.bilstm_config import config
-from ml.util import extract_text_model, load_url_data, merge_dict, plot_and_save_history
-import settings
+from ml.url_classifier.bilstm import BiLstmPredictor
+from ml.url_classifier.bilstm_config import config
+from ml.url_classifier.util import extract_text_model, load_url_data, merge_dict, plot_and_save_history
 
 ROOT = Path(__file__).parent.parent.parent
 

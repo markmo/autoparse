@@ -47,14 +47,20 @@ Modules support batch or stream mode. In stream mode, modules can be piped toget
 
 ::
 
-    python read_from_es.py --stream | python parse.py --stream 2>/dev/null | python load.py --stream
+    # cd [Project Root Directory]
+    export PYTHONPATH=src
+    python src/read_from_es.py --stream | python src/parse.py --stream 2>/dev/null | \
+    python src/load.py --stream | python src/analyze.py --stream > /tmp/output.jsonl
 
 or, as a convenience, using the provided bash scripts that include dependencies from
 a virtualenv
 
 ::
 
-    ./scripts/read_from_es.sh -1 | ./scripts/parse.sh 2>/dev/null | ./scripts/load.sh
+    # cd [Project Root Directory]
+    export PYTHONPATH=src
+    ./scripts/read_from_es.sh -1 | ./scripts/parse.sh 2>/dev/null | \
+    ./scripts/load.sh | ./scripts/analyze.sh > /tmp/output.jsonl
 
 or trigger via a web service
 
@@ -139,12 +145,11 @@ The main challenge with applying machine learning to the graph data is availabil
 labelled datasets. Most approaches use supervised learning which requires data examples to learn
 from.
 
-Starting with the simplest example I could think of (due to availability of a training set), we will
-score URLs found from logs on likelihood of being an address to a phishing or otherwise malicious
-site. We will train a Deep Learning model for this purpose, based on comparative benchmarks of
-performance from a literature search.
+The following initial machine learning models have been developed:
 
-The model can be found under `src/ml <src/ml/README.rst>`_.
+1. `Malicious URL Detector <src/ml/url_classifier/>`_ (Supervised)
+
+2. `Node2vec Clustering <src/ml/node2vec/>`_ (Unsupervised)
 
 
 Documentation
@@ -154,13 +159,13 @@ Documentation
 
 2. `Process <docs/process.rst>`_
 
-3. `Ontology <docs/ontology.rst>`_
+3. `Extracting message types from logs <docs/extracting_message_types.rst>`_
 
-4. `Extracting message types from logs <docs/extracting_message_types.rst>`_
+4. `Spell (Streaming Parser for Event Logs using Longest Common Subsequence) <docs/spell.rst>`_
 
-5. `Spell (Streaming Parser for Event Logs using Longest Common Subsequence) <docs/spell.rst>`_
+5. `Knowledge Graph <docs/knowledge_graph.rst>`_
 
-6. `Knowledge Graph <docs/knowledge_graph.rst>`_
+6. `Ontology <docs/ontology.rst>`_
 
 7. `Intro to the domain <docs/domain_basics.rst>`_
 

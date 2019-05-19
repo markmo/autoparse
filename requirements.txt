@@ -1,8 +1,10 @@
 elasticsearch==7.0.1
 elasticsearch-dsl==7.0.0
 falcon==2.0.0
+gensim==3.7.3
 gunicorn==19.9.0
 iocextract==1.13.1
+joblib==0.13.2
 jupyter==1.0.0
 Keras==2.2.4
 matplotlib==3.0.3
@@ -17,4 +19,5 @@ scipy==1.2.1
 sigmatools==0.10
 spacy==2.1.4
 tensorflow==1.13.1
+tqdm==4.32.0
 urllib3==1.24.1

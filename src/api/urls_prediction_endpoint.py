@@ -4,8 +4,7 @@ from pathlib import Path
 
 import falcon
 
-from ml.bilstm import BiLstmPredictor
-import settings
+from ml.url_classifier.bilstm import BiLstmPredictor
 
 ROOT = Path(__file__).parent.parent.parent
 
