@@ -1,5 +1,6 @@
-from pathlib import Path
+import logging
 import os
+from pathlib import Path
 
 import falcon
 
@@ -15,10 +16,17 @@ class UrlsResource(object):
         model_path = ROOT / os.getenv('MODELS_DIR')
         self.predictor = BiLstmPredictor()
         self.predictor.load_model(model_path)
+        logging.info('Model initialized!')
 
-    def on_get(self, req, resp, url):
+    def on_post(self, req, resp):
+        logging.debug('-> ' + self.on_post.__name__)
+        url = req.stream.read().decode('utf-8')
+        logging.debug('URL: ' + url)
+        if len(url) == 0:
+            raise falcon.HTTPBadRequest(
+                'Missing URL',
+                'A URL must be submitted in the request body.')
+
         pred = self.predictor.predict(url)
         resp.status = falcon.HTTP_200
         resp.body = 'bad' if pred == 1 else 'good'
-
-

@@ -10,3 +10,7 @@ export
 Spell_result
 data/dark_owl
 .DS_Store
+*.h5
+*.npy
+models/*.json
+reports/*.png

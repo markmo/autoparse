@@ -22,14 +22,15 @@ def run(constant_overwrites):
     model_path = ROOT / os.getenv('MODELS_DIR')
     report_path = ROOT / os.getenv('REPORTS_DIR')
     np.random.seed(random_state)
-    url_data = load_url_data(data_path)
+    url_data = load_url_data(data_path, sample=True)
     text_model = extract_text_model(url_data['url'])
     text_model['embed_dim'] = embed_dim
     classifier = BiLstmPredictor()
-    history = classifier.fit(text_model=text_model, model_dir_path=model_path, url_data=url_data,
+    history = classifier.fit(model=text_model, model_dir_path=model_path, url_data=url_data,
                              batch_size=batch_size, epochs=epochs)
     model_name = BiLstmPredictor.model_name
-    plot_and_save_history(history, model_name, report_path / model_name + '-history.png')
+    report_filename = model_name + '-history.png'
+    plot_and_save_history(history, model_name, str(report_path / report_filename))
 
 
 if __name__ == '__main__':

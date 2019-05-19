@@ -1,8 +1,12 @@
+from pathlib import PosixPath
+from typing import Dict, List
+
 import pandas as pd
+from keras.callbacks import History
 from matplotlib import pyplot as plt
 
 
-def extract_text_model(urls):
+def extract_text_model(urls: List) -> Dict:
     char2idx = {}
     max_url_seq_length = 0
     for url in urls:
@@ -21,13 +25,14 @@ def extract_text_model(urls):
     }
 
 
-def load_url_data(data_dir_path):
-    df = pd.read_csv(data_dir_path / 'malicious_urls' / 'data.csv', sep=',', header=0)
+def load_url_data(data_dir_path: PosixPath, sample: bool = False) -> pd.DataFrame:
+    filename = 'sample_data.csv' if sample else 'data.csv'
+    df = pd.read_csv(data_dir_path / 'malicious_urls' / filename, sep=',', header=0)
     df = pd.DataFrame({'url': df['url'], 'label': df['label'].apply(lambda x: int(x == 'bad'))})
     return df.sample(frac=1).reset_index(drop=True)
 
 
-def merge_dict(dict1, dict2):
+def merge_dict(dict1: Dict, dict2: Dict) -> Dict:
     merged = dict1.copy()
     for key, value in dict2.items():
         if value is not None:
@@ -36,7 +41,7 @@ def merge_dict(dict1, dict2):
     return merged
 
 
-def plot_history_2win(history):
+def plot_history_2win(history: History) -> None:
     plt.subplot(211)
     plt.title('Accuracy')
     plt.plot(history.history['acc'], color='g', label='Train')
@@ -52,7 +57,7 @@ def plot_history_2win(history):
     plt.show()
 
 
-def create_history_plot(history, model_name):
+def create_history_plot(history: History, model_name: str) -> None:
     plt.title('Accuracy and Loss (' + model_name + ')')
     plt.plot(history.history['acc'], color='g', label='Train Accuracy')
     plt.plot(history.history['val_acc'], color='b', label='Validation Accuracy')
@@ -62,11 +67,11 @@ def create_history_plot(history, model_name):
     plt.tight_layout()
 
 
-def plot_history(history, model_name):
+def plot_history(history: History, model_name: str) -> None:
     create_history_plot(history, model_name)
     plt.show()
 
 
-def plot_and_save_history(history, model_name, file_path):
+def plot_and_save_history(history: History, model_name: str, file_path: str) -> None:
     create_history_plot(history, model_name)
     plt.savefig(file_path)

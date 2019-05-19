@@ -1,3 +1,4 @@
+import logging
 import os
 from pathlib import Path
 from subprocess import PIPE, Popen
@@ -13,15 +14,17 @@ ROOT = Path(__file__).parent.parent
 class LogsResource(object):
 
     def on_get(self, req, resp):
+        logging.debug('-> ' + self.on_get.__name__)
         resp.status = falcon.HTTP_200
         resp.body = 'autoparse logs api is running'
 
     def on_post(self, req, resp):
+        logging.debug('-> ' + self.on_post.__name__)
         """ TODO find a cleaner alternative """
         read = Popen(['python', f'{ROOT}/read_from_es.py', '--stream', '--maxlines', '-1'], stdout=PIPE)
         parse = Popen(['python', f'{ROOT}/parse.py', '--stream', '--log-format', '<content>'],
                       stdin=read.stdout, stdout=PIPE, stderr=PIPE)
-        load = Popen(['python', f'{ROOT}/load.py', '--stream'], stdin=parse.stdout, stdout=PIPE)
+        Popen(['python', f'{ROOT}/load.py', '--stream'], stdin=parse.stdout, stdout=PIPE)
 
         log_lines = parse.stdout
         log_keys = parse.stderr  # TODO hack to capture two outputs from `parse`
