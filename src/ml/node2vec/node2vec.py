@@ -8,7 +8,7 @@ from joblib import delayed, Parallel
 from tqdm import tqdm
 
 
-class Node2Vec(object):
+class Node2vec(object):
 
     FIRST_TRAVEL_KEY = 'first_travel'
     PROBABILITIES_KEY = 'probabilities'

@@ -38,6 +38,7 @@ Consider that you are on a random walk and have just transitioned from node `<t>
 the following diagram (taken from the article).
 
 .. image:: ../../../images/node2vec_transition.png
+   :width: 60%
 
 The probability of transition from `<v>` to any one of its neighbours is `<edge weight> x <alpha>`
 (normalized), where `<alpha>` is determined by the hyperparameter settings.

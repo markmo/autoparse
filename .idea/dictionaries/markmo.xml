@@ -21,6 +21,7 @@
       <w>dotenv</w>
       <w>elasticsearch</w>
       <w>embedder</w>
+      <w>foxx</w>
       <w>gensim</w>
       <w>getenv</w>
       <w>gunicorn</w>

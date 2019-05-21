@@ -4,8 +4,7 @@ import sys
 from argparse import ArgumentParser
 from pathlib import Path
 
-from arango import ArangoClient
-
+from arango_util import get_db
 from ml.url_classifier.bilstm import BiLstmPredictor
 
 ROOT = Path(__file__).parent.parent
@@ -42,17 +41,6 @@ def scan_for_malicious_urls(constants):
                 doc['malicious_warning'] = False
 
             db.update_document(doc)
-
-
-def get_db():
-    protocol = os.getenv('ARANGODB_PROTOCOL') or 'http'
-    host = os.getenv('ARANGODB_HOST') or 'localhost'
-    port = os.getenv('ARANGODB_PORT') or 8529
-    dbname = os.getenv('ARANGODB_NAME') or 'cslogs'
-    username = os.getenv('ARANGODB_USERNAME')
-    password = os.getenv('ARANGODB_PASSWORD')
-    client = ArangoClient(protocol=protocol, host=host, port=port)
-    return client.db(dbname, username=username, password=password)
 
 
 if __name__ == '__main__':

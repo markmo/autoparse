@@ -8,6 +8,7 @@ joblib==0.13.2
 jupyter==1.0.0
 Keras==2.2.4
 matplotlib==3.0.3
+networkx==2.3
 numpy==1.16.2
 pandas==0.24.2
 pytest==4.5.0
