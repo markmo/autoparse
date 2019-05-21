@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce3e88e5-c351-4e12-9663-2b4e05ad04c1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/knowledge_graph.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/knowledge_graph.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ontology.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ontology.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ml/node2vec/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/src/ml/node2vec/README.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +18,37 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/ontology.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,7 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/spell.rst" />
         <option value="$PROJECT_DIR$/docs/extracting_message_types.rst" />
         <option value="$PROJECT_DIR$/tests/test_parsing.py" />
         <option value="$PROJECT_DIR$/src/api/logs.py" />
@@ -89,15 +122,12 @@
         <option value="$PROJECT_DIR$/src/api/logs_endpoint.py" />
         <option value="$PROJECT_DIR$/src/api/urls_prediction_endpoint.py" />
         <option value="$PROJECT_DIR$/src/api/config.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/ml/bilstm_train.py" />
         <option value="$PROJECT_DIR$/src/load.py" />
         <option value="$PROJECT_DIR$/src/ml/node2vec/edge_embedder.py" />
         <option value="$PROJECT_DIR$/docs/design.rst" />
         <option value="$PROJECT_DIR$/docs/data_sources.rst" />
         <option value="$PROJECT_DIR$/src/ml/url_classifier/README.rst" />
-        <option value="$PROJECT_DIR$/docs/knowledge_graph.rst" />
-        <option value="$PROJECT_DIR$/src/ml/node2vec/README.rst" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/src/arango_util.py" />
         <option value="$PROJECT_DIR$/src/analyze.py" />
@@ -105,6 +135,10 @@
         <option value="$PROJECT_DIR$/src/ml/node2vec/find_clusters.py" />
         <option value="$PROJECT_DIR$/src/ml/node2vec/cluster_search.py" />
         <option value="$PROJECT_DIR$/README.rst" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/ml/node2vec/README.rst" />
+        <option value="$PROJECT_DIR$/docs/ontology.rst" />
+        <option value="$PROJECT_DIR$/docs/knowledge_graph.rst" />
       </list>
     </option>
   </component>
@@ -129,7 +163,17 @@
             <path>
               <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
               <item name="autoparse" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoparse" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="autoparse" type="462c0819:PsiDirectoryNode" />
+              <item name="reports" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="autoparse" type="b2602c69:ProjectViewProjectNode" />
@@ -343,7 +387,7 @@
       <workItem from="1558244274260" duration="28000" />
       <workItem from="1558253521472" duration="1094000" />
       <workItem from="1558260243258" duration="8488000" />
-      <workItem from="1558476479916" duration="4700000" />
+      <workItem from="1558476479916" duration="5416000" />
     </task>
     <servers />
   </component>
@@ -380,10 +424,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112667000" />
+    <option name="totallyTimeSpent" value="113383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="974" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1935287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -593,13 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/bilstm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -625,9 +663,6 @@
     <entry file="file://$PROJECT_DIR$/docs/process.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/ontology.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/extracting_message_types.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
@@ -640,13 +675,7 @@
     <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ml/url_classifier/README.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -745,6 +774,22 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ml/node2vec/README.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/ontology.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/knowledge_graph.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
