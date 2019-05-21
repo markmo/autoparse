@@ -1,6 +1,8 @@
 autoparse
 =========
 
+Contact: Mark Moloney
+
 The goal is to process logs emitted from various applications and network components, 
 and look for patterns that highlight a potential threat or need for further investigation.
 
