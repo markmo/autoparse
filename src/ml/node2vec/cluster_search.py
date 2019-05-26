@@ -1,8 +1,9 @@
-import networkx as nx
 from pathlib import Path
 
+import networkx as nx
+
 import settings
-from arango_util import get_db
+from arango_util import ArangoDb
 from ml.node2vec.node2vec import Node2vec
 
 ROOT = Path(__file__).parent.parent.parent.parent
@@ -44,7 +45,8 @@ class ClusterSearch(object):
 # Currently, exporting data from ArangoDB into a local representation using NetworkX
 def build_local_graph():
     g = nx.Graph()
-    db = get_db()
+    arango = ArangoDb()
+    db = arango.db
     logs = db.graph('logs')
     edge_names = [x['edge_collection'] for x in logs.edge_definitions()]
     for name in logs.vertex_collections():

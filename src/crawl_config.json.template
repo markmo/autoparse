@@ -1,0 +1,12 @@
+{
+  "host": "",
+  "port": "",
+  "collections": [
+    {
+      "name": "",
+      "id_field": "_id",
+      "prop_fields": ["id", "domain", "crawlDate"],
+      "text_fields": ["url", "emails", "body"]
+    }
+  ]
+}

@@ -8,123 +8,168 @@ import os
 import sys
 from argparse import ArgumentParser
 
-from arango import ArangoClient
-
+from arango_util import ArangoDb
 import settings
+from streaming_app import app, parsed_logs_topic
 
 
-def run(constants):
-    protocol = os.getenv('ARANGODB_PROTOCOL') or 'http'
-    host = os.getenv('ARANGODB_HOST') or 'localhost'
-    port = os.getenv('ARANGODB_PORT') or 8529
-    dbname = os.getenv('ARANGODB_NAME') or 'cslogs'
-    sys_username = os.getenv('ARANGODB_SYS_USERNAME')
-    sys_password = os.getenv('ARANGODB_SYS_PASSWORD')
-    username = os.getenv('ARANGODB_USERNAME')
-    password = os.getenv('ARANGODB_PASSWORD')
-    client = ArangoClient(protocol=protocol, host=host, port=port)
-    sys_db = client.db('_system', username=sys_username, password=sys_password)
-    if not sys_db.has_database(dbname):
-        sys_db.create_database(dbname)
+class GraphLoader(object):
 
-    db = client.db(dbname, username=username, password=password)
-    # logs = db.create_collection('logs')
-    # logs.add_hash_index(fields=['log_id'], unique=True)
-    if not db.has_graph('logs'):
-        graph = db.create_graph('logs')
-    else:
-        graph = db.graph('logs')
+    def __init__(self):
+        arango = ArangoDb(test=True)
+        dbname = os.getenv('TEST_ARANGODB_NAME') or 'cslogs'
+        arango.create_database(dbname)
+        # logs = db.create_collection('logs')
+        # logs.add_hash_index(fields=['log_id'], unique=True)
+        graph = arango.create_graph('logs')
+        self.collections = create_or_fetch_vertex_collection(graph, 'collections')
+        self.logs = create_or_fetch_vertex_collection(graph, 'logs')
+        self.log_keys = create_or_fetch_vertex_collection(graph, 'log_keys')
+        self.ip_addrs = create_or_fetch_vertex_collection(graph, 'ip_addrs')
+        self.filenames = create_or_fetch_vertex_collection(graph, 'filenames')
+        self.uris = create_or_fetch_vertex_collection(graph, 'uris')
+        self.urls = create_or_fetch_vertex_collection(graph, 'urls')
+        self.emails = create_or_fetch_vertex_collection(graph, 'emails')
+        self.devices = create_or_fetch_vertex_collection(graph, 'devices')
+        self.procs = create_or_fetch_vertex_collection(graph, 'procs')
+        self.mem_addrs = create_or_fetch_vertex_collection(graph, 'mem_addrs')
+        self.uuids = create_or_fetch_vertex_collection(graph, 'uuids')
+        self.users = create_or_fetch_vertex_collection(graph, 'users')
+        self.people = create_or_fetch_vertex_collection(graph, 'people')
+        self.organizations = create_or_fetch_vertex_collection(graph, 'organizations')
+        self.locations = create_or_fetch_vertex_collection(graph, 'locations')
+        self.has_log = create_or_fetch_edge_collection(graph, 'has_log',
+                                                       from_vertex_collections=['collections'],
+                                                       to_vertex_collections=['logs'])
+        self.has_log_key = create_or_fetch_edge_collection(graph, 'has_log_key',
+                                                           from_vertex_collections=['logs'],
+                                                           to_vertex_collections=['log_keys'])
+        self.has_ip_addr = create_or_fetch_edge_collection(graph, 'has_ip_addr',
+                                                           from_vertex_collections=['logs'],
+                                                           to_vertex_collections=['ip_addrs'])
+        self.has_filename = create_or_fetch_edge_collection(graph, 'has_filename',
+                                                            from_vertex_collections=['logs'],
+                                                            to_vertex_collections=['filenames'])
+        self.has_uri = create_or_fetch_edge_collection(graph, 'has_uri',
+                                                       from_vertex_collections=['logs'],
+                                                       to_vertex_collections=['uris'])
+        self.has_url = create_or_fetch_edge_collection(graph, 'has_url',
+                                                       from_vertex_collections=['logs'],
+                                                       to_vertex_collections=['urls'])
+        self.has_email = create_or_fetch_edge_collection(graph, 'has_email',
+                                                         from_vertex_collections=['logs'],
+                                                         to_vertex_collections=['emails'])
+        self.has_device = create_or_fetch_edge_collection(graph, 'has_device',
+                                                          from_vertex_collections=['logs'],
+                                                          to_vertex_collections=['devices'])
+        self.has_proc = create_or_fetch_edge_collection(graph, 'has_proc',
+                                                        from_vertex_collections=['logs'],
+                                                        to_vertex_collections=['procs'])
+        self.has_mem_addr = create_or_fetch_edge_collection(graph, 'has_mem_addr',
+                                                            from_vertex_collections=['logs'],
+                                                            to_vertex_collections=['mem_addrs'])
+        self.has_uuid = create_or_fetch_edge_collection(graph, 'has_uuid',
+                                                        from_vertex_collections=['logs'],
+                                                        to_vertex_collections=['uuids'])
+        self.has_user = create_or_fetch_edge_collection(graph, 'has_user',
+                                                        from_vertex_collections=['logs'],
+                                                        to_vertex_collections=['users'])
+        self.has_person = create_or_fetch_edge_collection(graph, 'has_person',
+                                                          from_vertex_collections=['logs'],
+                                                          to_vertex_collections=['people'])
+        self.has_organization = create_or_fetch_edge_collection(graph, 'has_organization',
+                                                                from_vertex_collections=['logs'],
+                                                                to_vertex_collections=['organizations'])
+        self.has_location = create_or_fetch_edge_collection(graph, 'has_location',
+                                                            from_vertex_collections=['logs'],
+                                                            to_vertex_collections=['locations'])
 
-    logs = create_or_fetch_vertex_collection(graph, 'logs')
-    log_keys = create_or_fetch_vertex_collection(graph, 'log_keys')
-    ip_addrs = create_or_fetch_vertex_collection(graph, 'ip_addrs')
-    filenames = create_or_fetch_vertex_collection(graph, 'filenames')
-    uris = create_or_fetch_vertex_collection(graph, 'uris')
-    urls = create_or_fetch_vertex_collection(graph, 'urls')
-    emails = create_or_fetch_vertex_collection(graph, 'emails')
-    devices = create_or_fetch_vertex_collection(graph, 'devices')
-    procs = create_or_fetch_vertex_collection(graph, 'procs')
-    mem_addrs = create_or_fetch_vertex_collection(graph, 'mem_addrs')
-    uuids = create_or_fetch_vertex_collection(graph, 'uuids')
-    has_log_key = create_or_fetch_edge_collection(graph, 'has_log_key',
-                                                  from_vertex_collections=['logs'],
-                                                  to_vertex_collections=['log_keys'])
-    has_ip_addr = create_or_fetch_edge_collection(graph, 'has_ip_addr',
-                                                  from_vertex_collections=['logs'],
-                                                  to_vertex_collections=['ip_addrs'])
-    has_filename = create_or_fetch_edge_collection(graph, 'has_filename',
-                                                   from_vertex_collections=['logs'],
-                                                   to_vertex_collections=['filenames'])
-    has_uri = create_or_fetch_edge_collection(graph, 'has_uri',
-                                              from_vertex_collections=['logs'],
-                                              to_vertex_collections=['uris'])
-    has_url = create_or_fetch_edge_collection(graph, 'has_url',
-                                              from_vertex_collections=['logs'],
-                                              to_vertex_collections=['urls'])
-    has_email = create_or_fetch_edge_collection(graph, 'has_email',
-                                                from_vertex_collections=['logs'],
-                                                to_vertex_collections=['emails'])
-    has_device = create_or_fetch_edge_collection(graph, 'has_device',
-                                                 from_vertex_collections=['logs'],
-                                                 to_vertex_collections=['devices'])
-    has_proc = create_or_fetch_edge_collection(graph, 'has_proc',
-                                               from_vertex_collections=['logs'],
-                                               to_vertex_collections=['procs'])
-    has_mem_addr = create_or_fetch_edge_collection(graph, 'has_mem_addr',
-                                                   from_vertex_collections=['logs'],
-                                                   to_vertex_collections=['mem_addrs'])
-    has_uuid = create_or_fetch_edge_collection(graph, 'has_uuid',
-                                               from_vertex_collections=['logs'],
-                                               to_vertex_collections=['uuids'])
-    if constants['is_stream']:
-        for line in sys.stdin.readlines():
-            log = json.loads(line.strip())
+    # TODO buffer updates for batch execution
+    def load(self, jsonstr):
+        try:
+            log = json.loads(jsonstr.strip())
             log_id = log['log_id']
             event_id = str(log['event_id'])
+            source_collection = log['source_collection']
+            source_id = log['id']
+            metadata = log['metadata']
+            metadata['source_id'] = source_id
+            collkey = hashlib.md5(source_collection.encode('utf-8')).hexdigest()[0:8]
+            if not self.collections.has(collkey):
+                self.collections.insert({
+                    '_key': collkey,
+                    'name': source_collection
+                })
+
             # print('upsert log:', log_id, log['line'])
-            upsert(logs, {
+            upsert(self.logs, {
                 '_key': log_id,
                 'name': log_id,
                 'line': log['line'],
                 'message': log['message'],
-                'metadata': log['metadata']
+                'metadata': metadata
             })
-            upsert(log_keys, {
+            upsert(self.log_keys, {
                 '_key': event_id,
                 'name': event_id,
                 'template': log['log_key']
             })
+            has_log_key_ = '{}-{}'.format(collkey, log_id)
+            upsert(self.has_log, {
+                '_key': has_log_key_,
+                'name': has_log_key_,
+                '_from': 'collections/{}'.format(collkey),
+                '_to': 'logs/{}'.format(log_id)
+            })
             has_log_key_key = '{}-{}'.format(log_id, event_id)
-            upsert(has_log_key, {
+            upsert(self.has_log_key, {
                 '_key': has_log_key_key,
                 'name': has_log_key_key,
                 '_from': 'logs/{}'.format(log_id),
                 '_to': 'log_keys/{}'.format(event_id)
             })
+            last_user = None
             for param in log['params']:
                 if param['entity'] == 'ip_address':
-                    upsert_param(param, log_id, 'logs', ip_addrs, has_ip_addr)
+                    upsert_param(param, log_id, 'logs', self.ip_addrs, self.has_ip_addr)
                 elif param['entity'] == 'file':
-                    upsert_param(param, log_id, 'logs', filenames, has_filename)
+                    upsert_param(param, log_id, 'logs', self.filenames, self.has_filename)
                 elif param['entity'] == 'uri':
-                    upsert_param(param, log_id, 'logs', uris, has_uri)
+                    upsert_param(param, log_id, 'logs', self.uris, self.has_uri)
                 elif param['entity'] == 'url':
-                    upsert_param(param, log_id, 'logs', urls, has_url)
+                    upsert_param(param, log_id, 'logs', self.urls, self.has_url)
                 elif param['entity'] == 'email':
-                    upsert_param(param, log_id, 'logs', emails, has_email)
+                    upsert_param(param, log_id, 'logs', self.emails, self.has_email)
                 elif param['entity'] == 'device':
-                    upsert_param(param, log_id, 'logs', devices, has_device)
+                    upsert_param(param, log_id, 'logs', self.devices, self.has_device)
                 elif param['entity'] == 'process':
-                    upsert_param(param, log_id, 'logs', procs, has_proc)
+                    upsert_param(param, log_id, 'logs', self.procs, self.has_proc)
                 elif param['entity'] == 'memory_address':
-                    upsert_param(param, log_id, 'logs', mem_addrs, has_mem_addr)
+                    upsert_param(param, log_id, 'logs', self.mem_addrs, self.has_mem_addr)
                 elif param['entity'] == 'uuid':
-                    upsert_param(param, log_id, 'logs', uuids, has_uuid)
+                    upsert_param(param, log_id, 'logs', self.uuids, self.has_uuid)
+                elif param['entity'] == 'user':
+                    upsert_param(param, log_id, 'logs', self.users, self.has_user)
+                    last_user = hashlib.md5(param['value'].encode('utf-8')).hexdigest()[0:8]
+                elif param['entity'] == 'password':
+                    if last_user is not None:
+                        upsert(self.users, {'_key': last_user, 'password': param['value']})
+                elif param['entity'] == 'PERSON':
+                    upsert_param(param, log_id, 'logs', self.people, self.has_person)
+                elif param['entity'] == 'ORG':
+                    upsert_param(param, log_id, 'logs', self.organizations, self.has_organization)
+                elif param['entity'] in ['GPE', 'LOC']:
+                    upsert_param(param, log_id, 'logs', self.locations, self.has_location)
 
-            print(line.strip())
+            return log
 
-    else:
-        raise NotImplementedError
+        except Exception as e:
+            raise e
+
+    def process_stdin(self):
+        for jsonstr in sys.stdin.readlines():
+            log = self.load(jsonstr)
+            print(log)
 
 
 def upsert_param(param, root_id, root_name, vertex_coll, edge_coll):
@@ -168,6 +213,22 @@ def upsert(resource, props):
         resource.update(props)
     else:
         resource.insert(props)
+
+
+loader = GraphLoader()
+
+
+@app.agent(parsed_logs_topic)
+async def load(parsed_logs):
+    async for jsonstr in parsed_logs:
+        loader.load(jsonstr)
+
+
+def run(constants):
+    if constants['is_stream']:
+        loader.process_stdin()
+    else:
+        raise NotImplementedError()
 
 
 if __name__ == '__main__':

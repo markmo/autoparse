@@ -1,6 +1,7 @@
 elasticsearch==7.0.1
 elasticsearch-dsl==7.0.0
 falcon==2.0.0
+faust==1.6.1
 gensim==3.7.3
 gunicorn==19.9.0
 iocextract==1.13.1
@@ -14,6 +15,7 @@ pandas==0.24.2
 pytest==4.5.0
 python-arango==4.4.0
 python-dotenv==0.10.1
+python-rocksdb==0.7.0
 requests==2.21.0
 scikit-learn==0.20.3
 scipy==1.2.1

@@ -8,12 +8,16 @@
       <w>autoparse</w>
       <w>baselining</w>
       <w>bilstm</w>
+      <w>collkey</w>
+      <w>collname</w>
       <w>convolutional</w>
       <w>crossentropy</w>
       <w>cslogs</w>
       <w>cyber</w>
       <w>cybersec</w>
       <w>cybersecurity</w>
+      <w>cysec</w>
+      <w>darkowl</w>
       <w>datasets</w>
       <w>dbname</w>
       <w>defanged</w>
@@ -21,6 +25,7 @@
       <w>dotenv</w>
       <w>elasticsearch</w>
       <w>embedder</w>
+      <w>fieldname</w>
       <w>foxx</w>
       <w>gensim</w>
       <w>getenv</w>
@@ -32,13 +37,16 @@
       <w>iocextract</w>
       <w>joblib</w>
       <w>jsonl</w>
+      <w>jsonstr</w>
       <w>keras</w>
       <w>kibana</w>
+      <w>launchd</w>
       <w>lstm</w>
       <w>malware</w>
       <w>matplotlib</w>
       <w>maxlines</w>
       <w>moloney</w>
+      <w>nascii</w>
       <w>ndarray</w>
       <w>nifi</w>
       <w>ontologies</w>
@@ -49,10 +57,13 @@
       <w>precomputing</w>
       <w>preprocessing</w>
       <w>procs</w>
+      <w>propname</w>
+      <w>pyenv</w>
       <w>pytest</w>
       <w>pythonpath</w>
       <w>refanged</w>
       <w>regexs</w>
+      <w>repsert</w>
       <w>rmsprop</w>
       <w>scikit</w>
       <w>scipy</w>
@@ -65,6 +76,7 @@
       <w>steganography</w>
       <w>subgraphs</w>
       <w>subsequence</w>
+      <w>telstra</w>
       <w>tensorflow</w>
       <w>unnormalized</w>
       <w>upsert</w>

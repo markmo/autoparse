@@ -33,3 +33,34 @@ Setup Test Environment
 
 5. Open the ArangoDB client at `http://localhost:8529 <http://localhost:8529>`_
 
+6. Install Kafka
+
+   On OS X you can:
+   ::
+
+       brew install kafka
+
+7. Start Zookeeper and Kafka:
+
+   To have launchd start kafka now and restart at login:
+   ::
+
+       brew services start kafka
+
+   Or, if you don't want/need a background service you can just run:
+   ::
+
+       zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & \
+       kafka-server-start /usr/local/etc/kafka/server.properties
+
+
+Cleanup
+-------
+
+1. Cleanup Kafka topics
+   ::
+
+       kafka-topics --bootstrap-server localhost:9092 --delete --topic raw_logs
+       kafka-topics --bootstrap-server localhost:9092 --delete --topic parsed_logs
+       kafka-topics --bootstrap-server localhost:9092 --delete --topic log_keys
+

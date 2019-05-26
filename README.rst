@@ -45,13 +45,43 @@ apply various graph analytics and machine learning approaches to:
 Run
 ---
 
+Run the faust module
+
+::
+
+    # activate virtualenv, e.g. `pyenv activate autoparse`
+    cd src
+    export PYTHONPATH=.
+
+    # 'main' refers to the `main.py` application file, starting a worker,
+    # setting the log level to 'info'. A task in main reads logs from Arango.
+    faust -A main worker -l info
+
+You can see parsed logs published to Kafka using:
+
+::
+
+    kafka-console-consumer --topic parsed_logs --bootstrap-server localhost:9092 --property print.key=True
+
+or
+
+::
+
+    kafka-console-consumer --topic parsed_logs --bootstrap-server localhost:9092 --property print.key=True --from-beginning
+
+**Please note:**
+
+The instructions below have been deprecated in favour of using Kafka and Faust as a
+more reliable stream processing solution. (The shell-based pipes were breaking. A
+queue-based approach is more suitable for the heavy processing performed.)
+
 Modules support batch or stream mode. In stream mode, modules can be piped together
 
 ::
 
     # cd [Project Root Directory]
     export PYTHONPATH=src
-    python src/read_from_es.py --stream | python src/parse.py --stream 2>/dev/null | \
+    python src/read_from_es.py --stream | python src/parse.py --stream --log-format "<content>" 2>/dev/null | \
     python src/load.py --stream | python src/analyze.py --stream > /tmp/output.jsonl
 
 or, as a convenience, using the provided bash scripts that include dependencies from

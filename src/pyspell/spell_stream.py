@@ -336,36 +336,36 @@ def ioc_parse(line):
         param = get_ioc_param('url', url, formatted)
         param.append(refanged)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], url, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], url, formatted[param[1]:])
 
     for ip in iocextract.extract_ipv4s(formatted):
         refanged = iocextract.refang_ipv4(ip)
         param = get_ioc_param('ip_address', ip, formatted)
         param.append(refanged)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
 
     for ip in iocextract.extract_ipv6s(formatted):
         param = get_ioc_param('ip_address', ip, formatted)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], ip, formatted[param[1]:])
 
     for email in iocextract.extract_emails(formatted):
         refanged = iocextract.refang_email(email)
         param = get_ioc_param('email', email, formatted)
         param.append(refanged)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], email, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], email, formatted[param[1]:])
 
     for h in iocextract.extract_hashes(formatted):
         param = get_ioc_param('hash', h, formatted)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], h, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], h, formatted[param[1]:])
 
     for rule in iocextract.extract_yara_rules(formatted):
         param = get_ioc_param('yara_rule', rule, formatted)
         params.append(param)
-        formatted = '{}<{}>{}'.format(formatted[:param[0]], rule, formatted[param[1]:])
+        formatted = '{}{}{}'.format(formatted[:param[0]], rule, formatted[param[1]:])
 
     return formatted, params
 
@@ -374,20 +374,25 @@ def preprocess(line, regexs):
     params = []
     formatted = line
     for entity, regex in regexs.items():
-        # convert to list so we can see if empty without consuming the iterator
-        matches = list(re.finditer(regex, formatted))
+        try:
+            # convert to list so we can see if empty without consuming the iterator
+            matches = list(re.finditer(regex, formatted))
 
-        # more efficient version
-        for match in matches:
-            start, end = match.start(), match.end()
-            formatted = '{}<{}>{}'.format(formatted[:start], entity.upper(), formatted[end:])
-            token_start = len(line[:start].split())
-            params.append([start, end, match.group(0), entity, token_start, token_start + 1])
-        # if not_empty(matches):
-        #     formatted = re.sub(regex, '<{}>'.format(entity.upper()), line)
-        #     for match in matches:
-        #         token_start = len(line[:match.start()].split())
-        #         params.append([match.start(), match.end(), match.group(0), entity, token_start, token_start + 1])
+            # more efficient version
+            for match in matches:
+                for key, value in match.groupdict().items():
+                    start, end = match.start(key), match.end(key)
+                    formatted = '{}<{}>{}'.format(formatted[:start], key.upper(), formatted[end:])
+                    token_start = len(line[:start].split())
+                    params.append([start, end, match.group(0), key, token_start, token_start + 1])
+            # if not_empty(matches):
+            #     formatted = re.sub(regex, '<{}>'.format(entity.upper()), line)
+            #     for match in matches:
+            #         token_start = len(line[:match.start()].split())
+            #         params.append([match.start(), match.end(), match.group(0), entity, token_start, token_start + 1])
+        except Exception as e:
+            print('regex:', regex)
+            raise e
 
     return formatted, params
 

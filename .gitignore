@@ -1,5 +1,7 @@
 *.pyc
 *.csv
+*.txt
+*.jsonl
 !data/hdfs/*.csv
 !data/malicious_urls/*.csv
 export
@@ -13,3 +15,4 @@ data/dark_owl
 *.h5
 *.npy
 !models/*
+crawl_config.json

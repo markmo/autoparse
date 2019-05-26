@@ -10,11 +10,13 @@ graph implementation.
 
 Examples of ontologies is shown below.
 
-<img src="../images/cysec_knowledge_graph.jpg"/>
+.. raw:: html
 
-<img src="../images/cysec_ontology.jpg" width="60%"/>
+    <img src="../images/cysec_knowledge_graph.jpg"/>
 
-<img src="../images/cysec_ontology_2.jpg" width="60%"/>
+    <img src="../images/cysec_ontology.jpg" width="60%"/>
+
+    <img src="../images/cysec_ontology_2.jpg" width="60%"/>
 
 The example ontology shown above, consists of the following five entity types:
 

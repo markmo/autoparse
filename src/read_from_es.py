@@ -3,12 +3,15 @@
 Read log records from Elasticsearch. Emits a stream to `stdout`.
 """
 
+import json
 import os
 import sys
+import uuid
 from argparse import ArgumentParser
 
 from elasticsearch import Elasticsearch
 from elasticsearch_dsl import Search
+
 import settings
 
 
@@ -28,7 +31,12 @@ def run(constants):
             for result in hit.results:
                 for line in result.body.splitlines():
                     if len(line) > 0:
-                        print(line)
+                        print(json.dumps({
+                            'id': str(uuid.uuid1()),
+                            'source_collection': index,
+                            'line': line,
+                            'metadata': {}
+                        }))
                         i += 1
                         if i == max_lines:
                             sys.exit(0)

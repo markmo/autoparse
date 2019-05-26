@@ -4,7 +4,7 @@ import sys
 from argparse import ArgumentParser
 from pathlib import Path
 
-from arango_util import get_db
+from arango_util import ArangoDb
 from ml.url_classifier.bilstm import BiLstmPredictor
 
 ROOT = Path(__file__).parent.parent
@@ -28,7 +28,8 @@ def scan_for_malicious_urls(constants):
             print(json.dumps(log))
 
     else:
-        db = get_db()
+        arango = ArangoDb()
+        db = arango.db
         aql = db.aql
         cursor = aql.execute('for doc in urls return doc')
         bad_urls = []
