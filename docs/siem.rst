@@ -36,26 +36,39 @@ SIEM correlation rules can generate false positives just like any sort of event 
 Example correlation rules:
 
 * Connection established from some IP address and some TCP/IP port to another IP address and TCP/IP port.
+
 * Some user changed their username on Tuesday and their password on Thursday
+
 * Some client machine downloaded 500MB and uploaded 200MB of network traffic one day, then downloaded
   3.5GB and uploaded 750MB of network traffic the next day.
+
 * Authentication and account events:
+
   * Large number of failed logon attempts
   * Alternation and usage of specific accounts (e.g. Directory Service Recovery Mode (DSRM) - Active
     Directory Account used for recovery purposes).
+    
 * Windows Security ID (SID) history
+
 * Process execution:
+  
   * Execution from unusual locations
   * Suspicious process relationships
   * Known executables with unknown hashes
   * Known evil hashes
+  
 * Windows events:
+  
   * Service installations with rare names in monitored environment
   * New domain trusts
+  
 * Network:
+
   * Port scans
   * Host discovery (ping sweeps)
+
 * Web applications:
+
   * 5xx errors
   * Specific exceptions
 
