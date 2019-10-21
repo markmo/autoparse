@@ -23,4 +23,4 @@ sigmatools==0.10
 spacy==2.1.4
 tensorflow==1.13.1
 tqdm==4.32.0
-urllib3==1.24.1
+urllib3==1.24.2
