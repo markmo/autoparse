@@ -21,6 +21,6 @@ scikit-learn==0.20.3
 scipy==1.2.1
 sigmatools==0.10
 spacy==2.1.4
-tensorflow==1.13.1
+tensorflow==2.7.2
 tqdm==4.32.0
 urllib3==1.24.1
