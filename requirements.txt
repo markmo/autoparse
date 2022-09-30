@@ -5,7 +5,7 @@ faust==1.6.1
 gensim==3.7.3
 gunicorn==19.9.0
 iocextract==1.13.1
-joblib==0.13.2
+joblib==1.2.0
 jupyter==1.0.0
 Keras==2.2.4
 matplotlib==3.0.3
